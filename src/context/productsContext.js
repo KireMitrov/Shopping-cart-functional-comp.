@@ -10,6 +10,15 @@ const PRODUCTS_QUERY = gql`
         name
         inStock
         gallery
+        description
+        brand
+        attributes{
+          name
+          type
+          items{
+            value
+          }
+        }
         prices{
           currency{
             label

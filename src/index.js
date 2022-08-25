@@ -5,6 +5,8 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { ApolloProvider, ApolloClient, InMemoryCache } from "@apollo/client";
 import { ProductsProvider } from './context/productsContext';
+import { BrowserRouter } from "react-router-dom";
+
 
 const client = new ApolloClient({
   uri: "http://localhost:4000",
@@ -14,11 +16,13 @@ const client = new ApolloClient({
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <ApolloProvider client={client}>
-      <ProductsProvider>
-      <App />
-      </ProductsProvider>
-    </ApolloProvider>
+    <BrowserRouter>
+      <ApolloProvider client={client}>
+        <ProductsProvider>
+          <App />
+        </ProductsProvider>
+      </ApolloProvider>
+    </BrowserRouter>
   </React.StrictMode>
 );
 

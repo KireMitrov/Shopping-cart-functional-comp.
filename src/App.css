@@ -1,6 +1,15 @@
-*{
+* {
     box-sizing: border-box;
 }
+
+a {
+    text-decoration: none;
+}
+
+a:hover{
+    box-shadow:  0px 4px 35px rgba(168, 172, 176, 0.19);
+}
+
 /* Header */
 
 .header {
@@ -119,7 +128,7 @@
     letter-spacing: 0;
     line-height: 67.2px;
     white-space: nowrap;
-    text-transform:uppercase;
+    text-transform: uppercase;
 }
 
 /* Product Card*/
@@ -133,7 +142,8 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    padding: 0px;
+    padding: 16px;
+
 }
 
 .product-card img {
@@ -163,12 +173,104 @@
     color: #1D1F22;
 }
 
-.products{
+.products {
     display: flex;
     flex-direction: row;
     position: relative;
-    top: 331px;
+    top: 312px;
     margin: 0 101px;
     flex-wrap: wrap;
     justify-content: space-between;
+    row-gap: 60px;
+}
+
+/* Product despcription page */
+
+.product-container {
+    display: flex;
+    align-items: flex-start;
+    margin-top: 160px;
+    margin-left: 219px;
+    height: 595px;
+    min-width: 1002px;
+}
+.product-description {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    margin-left: 100px;
+    min-height: 595px;
+    width: 312px;
+}
+
+.product-container img {
+    height: 511px;
+    margin-top: 2px;
+    width: 610px;
+}
+
+.product-brand{
+    color:rgb(29, 31, 34);
+    font-family: "Raleway";
+    font-weight: 600;
+    font-size: 42px;
+    height: 27px;
+    letter-spacing: 0;
+    line-height: 27px;
+    white-space: nowrap;
+}
+
+.product-title{
+    color:rgb(29, 31, 34);
+    font-family: "Raleway";
+    font-weight: 400;
+    font-size: 30px;
+    height: 27px;
+    letter-spacing: 0;
+    line-height: 27px;
+    white-space: nowrap;
+}
+.attributes-container{
+    display: flex;
+    flex-direction: row;
+    gap:8px;
+}
+.attributes-rectangle{
+    width: 63px;
+    height: 45px;
+    border:1px solid #1D1F22;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    font-family: "Railway";
+    font-weight: 400;
+}
+.attributes-rectangle-color{
+    width: 36px;
+    height: 36px;
+    border:1px solid rgb(94, 206, 123, 1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.product-description-price{
+    height: 18px;
+    letter-spacing: 0;
+    line-height: 18px;
+    white-space: nowrap;
+    font-size: 18px;
+    color:#1D1F22;
+    font-weight: 500;
+    text-transform: uppercase;
+}
+.product-description button{
+    padding: 16px 32px;
+    width: 292px;
+    font-family: "Raleway";
+    font-weight: 600;
+    color: rgb(255, 255, 255, 1);
+    background-color: rgba(94, 206, 123, 1);
+    font-size: 16px;
+    border: none;
 }
