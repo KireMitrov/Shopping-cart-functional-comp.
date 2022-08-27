@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 
 
 function ProductCard({ name, img }) {
+    
     return (
         <Link to={name}>
             <div className="product-card">

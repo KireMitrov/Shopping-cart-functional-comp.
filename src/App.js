@@ -6,6 +6,7 @@ import Clothes from './pages/Clothes';
 import { Routes, Route, Navigate} from "react-router";
 import Tech from './pages/Tech';
 import Product from './components/Product/Product';
+import Cart from './pages/Cart';
 
 function App() {
   
@@ -15,8 +16,11 @@ function App() {
       <Routes>
         <Route path="all" element={<All></All>}></Route>
         <Route path="all/:product" element={<Product></Product>}></Route>
+        <Route path="tech/:product" element={<Product></Product>}></Route>
+        <Route path="clothes/:product" element={<Product></Product>}></Route>
         <Route path="tech" element={<Tech></Tech>}></Route>
         <Route path="clothes" element={<Clothes></Clothes>}></Route>
+        <Route path="cart" element={<Cart></Cart>}></Route>
         <Route path="*" element={<Navigate to="/all" replace/>}></Route>
       </Routes>
     </div>

@@ -5,12 +5,12 @@ import { ProductsContext } from "../../context/productsContext";
 
 function All() {
 
-    const { data } = useContext(ProductsContext);
+    const { data,CartIsOpen } = useContext(ProductsContext);
 
     console.log(data);
     return (
-        <div>
-            <div className="title-position">
+        <div style={{ backgroundColor: !CartIsOpen ? "white" : "rgba(57, 55, 72, 0.22)" }}>
+            <div className="title-position" >
                 <h1 className="title">{data.categories[0].name}</h1>
 
             </div>

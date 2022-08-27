@@ -35,6 +35,8 @@ const ProductsContext = createContext();
 
 const ProductsProvider = ({children}) => {
     // const [products, setProducts] = useState([]);
+    const [CartIsOpen, setCartIsOpen] = useState(false);
+
     const { data, loading, error } = useQuery(PRODUCTS_QUERY);
     
     if (loading) return "Loading...";
@@ -44,7 +46,7 @@ const ProductsProvider = ({children}) => {
     //     setProducts(data);
     // },[])
     // console.log(products)
-    const value = {data}
+    const value = {data, CartIsOpen, setCartIsOpen}
     return <ProductsContext.Provider value={value}>{children}</ProductsContext.Provider>;
 }
 

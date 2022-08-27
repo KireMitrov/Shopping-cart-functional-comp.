@@ -1,38 +1,35 @@
-import React, { useContext } from "react"
+import React, { useContext, useState } from "react"
+import { Link } from "react-router-dom";
 import { ProductsContext } from "../../context/productsContext";
+import CartOverlay from "../Cart Overlay/CartOverlay";
 
-function Header(){
+function Header() {
 
-    const {data} = useContext(ProductsContext);
+    const { data, CartIsOpen, setCartIsOpen } = useContext(ProductsContext);
     
     return (
         <div className="header">
             <img className="logo" src="a-logo.svg" alt="logo"></img>
             <div className="navigation">
-                {data.categories.map((category)=>(
-                    <div className="navigation-element">
-                        <p className="label">{category.name}</p>
-                    </div>
+                {data.categories.map((category) => (
+                    <Link to={category.name}>
+                        <div className="navigation-element">
+                            <p className="label">{category.name}</p>
+                        </div>
+                    </Link>
                 ))}
-                {/* <div className="navigation-element-women">
-                    <p className="label">ALL</p>
-                </div>
-                <div className="navigation-element-men">
-                    <p className="label">TECH</p>
-                </div>
-                <div className="navigation-element-kids">
-                    <p className="label">CLOTHES</p>
-                </div> */}
-                
             </div>
             <div className="actions">
                 <div className="currency">
                     <div className="currency-sign">
                         $
                     </div>
-                            <img src="Vector.svg" alt=""/>
+                    <img src="Vector.svg" alt="" />
                 </div>
-                <img className="cart-icon" src="Empty Cart.svg" alt="empty-cart"  />
+                <img className="cart-icon" src="Empty Cart.svg" alt="empty-cart" onClick={() => setCartIsOpen(!CartIsOpen)} />
+            </div>
+            <div style={{ display: !CartIsOpen ? "none" : "block" }}>
+                <CartOverlay></CartOverlay>
             </div>
         </div>
     )
