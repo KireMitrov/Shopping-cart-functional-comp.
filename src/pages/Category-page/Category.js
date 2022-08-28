@@ -1,21 +1,22 @@
 import React, { useContext } from "react";
-import ProductCard from "../../components/Product card/ProductCard";
 import { ProductsContext } from "../../context/productsContext";
+import ProductCard from "../../components/Product card/ProductCard";
 
 
-function Clothes() {
+function Category() {
 
-    const { data, CartIsOpen } = useContext(ProductsContext);
+    const { data, CartIsOpen, categoryName } = useContext(ProductsContext);
 
-    console.log(data);
+    const category = data.categories.find((cat) => cat.name.toLowerCase() === categoryName.toLowerCase());
+
+
     return (
         <div style={{ backgroundColor: !CartIsOpen ? "white" : "rgba(57, 55, 72, 0.22)" }}>
-            <div className="title-position">
-                <h1 className="title">{data.categories[1].name}</h1>
-
+            <div className="title-position" >
+                <h1 className="title">{categoryName}</h1>
             </div>
             <div className="products">
-                {data.categories[1].products.map((product) => (
+                {category.products.map((product) => (
                     <div className="product-card">
                         <ProductCard name={product.name} img={product.gallery[0]}></ProductCard>
                     </div>
@@ -25,4 +26,5 @@ function Clothes() {
         </div>
     );
 }
-export default Clothes
+
+export default Category
