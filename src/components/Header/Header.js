@@ -26,7 +26,7 @@ function Header() {
             <img className="logo" src="a-logo.svg" alt="logo"></img>
             <div className="navigation">
                 {data.categories.map((category) => (
-                    <Link to={category.name} >
+                    <Link to={category.name}  key={category.name}>
                         <div  onClick={()=>setCategoryName(category.name)} className="navigation-element">
                             <p className="label">{category.name}</p>
                         </div>

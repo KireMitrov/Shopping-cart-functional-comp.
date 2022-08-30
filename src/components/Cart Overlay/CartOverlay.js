@@ -4,15 +4,26 @@ import { ProductsContext } from "../../context/productsContext";
 
 function CartOverlay() {
 
-    const { setCartIsOpen } = useContext(ProductsContext);
+    const { setCartIsOpen, cartItems } = useContext(ProductsContext);
 
     return (
         <div className="cart-overlay" >
             <div className="cart-overlay-products-container">
-
+                <div>My Bag, {cartItems.length} items</div>
+                <div>
+                    {cartItems.map((item) => (
+                        <div>
+                            <div>{item.brand}</div>
+                            <div>{item.name}</div>
+                            <div>$50.00</div>
+                            <div>Size:</div>
+                            <div>Color:</div>
+                        </div>
+                    ))}
+                </div>
                 <div className="cart-overlay-total">
-                    <div>Total:</div>
-                    <div>$299,00</div>
+                    <div className="cart-overlay-total-text">Total</div>
+                    <div className="cart-overlay-price">$299,00</div>
                 </div>
             </div>
             <div className="cart-overlay-btns">

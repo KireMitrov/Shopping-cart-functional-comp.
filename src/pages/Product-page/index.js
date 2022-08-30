@@ -16,7 +16,7 @@ function ProductPage() {
         setImageUrl(e.target.src)
     }
 
-    function addToCart(product){
+    function addToCart(product) {
         console.log('the product is', product)
     }
 
@@ -26,27 +26,28 @@ function ProductPage() {
     return (
         <div className="product-container">
             <div className="product">
-                <img src={imageUrl}></img>
+                <img src={imageUrl} alt={currentProduct.name}></img>
             </div>
+            <div className="attributes-text">PRICE:</div>
             <div className="product-description">
                 <div className="product-brand">{currentProduct.brand}</div>
                 <p className="product-title">{currentProduct.name}</p>
                 <div>
-                    {currentProduct.attributes.map((attribute) => {
+                    {currentProduct.attributes.map((attribute, index) => {
                         if (attribute.type === 'text')
-                            return <div>
-                                <p className="attributes">{attribute.name}:</p>
+                            return <div key={index}>
+                                <p className="attributes-text">{attribute.name}:</p>
                                 <div className="attributes-container">
                                     {attribute.items.map((value) => (
-                                        <div className="attributes-rectangle">{value.value}</div>
+                                        <div className="attributes-rectangle" key={value.value}>{value.value}</div>
                                     ))}
                                 </div>
                             </div>
-                        return <div>
-                            <p className="attributes">{attribute.name}:</p>
+                        return <div key={index}>
+                            <p className="attributes-text">{attribute.name}:</p>
                             <div className="attributes-container">
                                 {attribute.items.map((value) => (
-                                    <div className="attributes-rectangle-color" style={{ backgroundColor: `${value.value}` }}></div>
+                                    <div className="attributes-rectangle-color" style={{ backgroundColor: `${value.value}` }} key={value.value}></div>
                                 ))}
                             </div>
 
@@ -54,13 +55,15 @@ function ProductPage() {
                     }
                     )}
                 </div>
-                <p className="product-description-price">PRICE:</p>
-                <button onClick={()=>addToCart(product)}>ADD TO CART</button>
-                <div  className="product-description-text" dangerouslySetInnerHTML={{ __html: currentProduct.description }} />
+                <div>
+                    <div className="product-description-price">$50.00</div>
+                </div>
+                <button onClick={() => addToCart(product)}>ADD TO CART</button>
+                <div className="product-description-text" dangerouslySetInnerHTML={{ __html: currentProduct.description }} />
             </div>
             <div className="product-images">
-                {currentProduct.gallery.map((url) => (
-                    <img src={url} onClick={changeProductUrl}></img>
+                {currentProduct.gallery.map((url, index) => (
+                    <img src={url} onClick={changeProductUrl} key={index}></img>
                 ))}
             </div>
         </div>

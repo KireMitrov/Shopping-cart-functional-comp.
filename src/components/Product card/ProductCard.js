@@ -1,21 +1,27 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import { Link } from 'react-router-dom';
+import { ProductsContext } from "../../context/productsContext";
 
 
 function ProductCard({ name, img }) {
+
+    const [isHovered, setIsHovered] = useState(false);
+    const {data, addToCart} = useContext(ProductsContext);
+
     
     return (
-        <Link to={name}>
-            <div className="product-card">
-                <img src={img} ></img>
+        <div className="product-card" onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)}>
+            <Link to={name}>
+                <img src={img} className="product-card-img"></img>
                 <div className="content">
                     {name}
                 </div>
                 <div className="product-price">
                     $50.00
                 </div>
-            </div>
-        </Link>
+            </Link>
+            {isHovered ? <img src={'Circle Icon.svg'} className="cart-icon-small" onClick={()=>addToCart(name)}></img> : null}
+        </div>
     )
 }
 

@@ -131,7 +131,7 @@ a {
 /* Product Card*/
 
 .product-card {
-    /* position: absolute; */
+    /* position: relative; */
     width: 386px;
     height: 444px;
     left: 100px;
@@ -140,34 +140,29 @@ a {
     flex-direction: column;
     align-items: flex-start;
     padding: 16px;
-
 }
 
-.product-card img {
+.product-card-img {
     width: 354px;
     height: 330px;
     top: 16px;
     left: 16px;
+    margin:16px 16px 0 16px;
 }
 
 .content {
-    font-family: 'Raleway';
-    font-style: normal;
     font-weight: 300;
     font-size: 18px;
-    margin-top: 24px;
     width: 354px;
-    height: 29px;
     color: #1D1F22;
+    margin: 24px 16px 0 16px;
 }
 
 .product-price {
-    font-family: 'Raleway';
-    font-style: normal;
     font-weight: 600;
     font-size: 18px;
-    line-height: 160%;
     color: #1D1F22;
+    margin: 16px 16px;
 }
 
 .products {
@@ -182,8 +177,22 @@ a {
     column-gap: 76px;
 }
 
-.products a:hover {
-    box-shadow: 0px 4px 35px rgba(168, 172, 176, 0.19);
+.product-card a{
+    width: 386px;
+    height: 444px;
+}
+.product-card a:hover {
+    box-shadow: 0px 4px 35px rgba(168, 172, 176, 0.19)  !important;
+}
+
+.cart-icon-small{
+    position: relative;
+    height: 56px;
+    width: 56px;
+    bottom:123px;
+    left: 288px;
+    cursor: pointer;
+    z-index: 10;
 }
 
 /* Product despcription page */
@@ -213,7 +222,7 @@ a {
 }
 
 .product-brand {
-    color: rgb(29, 31, 34);
+    color: #1d1f22;
     font-family: "Raleway";
     font-weight: 600;
     font-size: 42px;
@@ -239,11 +248,14 @@ a {
     flex-direction: row;
     gap: 8px;
 }
- .attributes{
+
+.attributes-text {
     font-weight: 700;
     font-size: 18px;
     text-transform: uppercase;
- }
+    margin: 32px 0 10px 0 ;
+}
+
 .attributes-rectangle {
     width: 63px;
     height: 45px;
@@ -266,14 +278,13 @@ a {
 }
 
 .product-description-price {
-    height: 18px;
     letter-spacing: 0;
-    line-height: 18px;
     white-space: nowrap;
-    font-size: 18px;
+    font-size: 24px;
     color: #1D1F22;
-    font-weight: 500;
+    font-weight: 700;
     text-transform: uppercase;
+    margin-bottom: 20px;
 }
 
 .product-description button {
@@ -287,9 +298,10 @@ a {
     border: none;
 }
 
-.product-description-text{
+.product-description-text {
     margin-top: 32px;
 }
+
 .product-images {
     float: left;
     position: absolute;
@@ -350,10 +362,21 @@ a {
     height: 538px;
     background-color: #fff;
 }
-.cart-overlay-total{
+
+.cart-overlay-total {
     display: flex;
     justify-content: space-between;
     width: 293px;
+}
+
+.cart-overlay-total-text{
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.cart-overlay-price{
+    font-size: 16px;
+    font-weight: 700;
 }
 .cart-overlay-btns {
     display: flex;
