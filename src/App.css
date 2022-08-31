@@ -147,7 +147,7 @@ a {
     height: 330px;
     top: 16px;
     left: 16px;
-    margin:16px 16px 0 16px;
+    margin: 16px 16px 0 16px;
 }
 
 .content {
@@ -177,19 +177,20 @@ a {
     column-gap: 76px;
 }
 
-.product-card a{
+.product-card a {
     width: 386px;
     height: 444px;
 }
+
 .product-card a:hover {
-    box-shadow: 0px 4px 35px rgba(168, 172, 176, 0.19)  !important;
+    box-shadow: 0px 4px 35px rgba(168, 172, 176, 0.19) !important;
 }
 
-.cart-icon-small{
+.cart-icon-small {
     position: relative;
     height: 56px;
     width: 56px;
-    bottom:123px;
+    bottom: 123px;
     left: 288px;
     cursor: pointer;
     z-index: 10;
@@ -253,7 +254,7 @@ a {
     font-weight: 700;
     font-size: 18px;
     text-transform: uppercase;
-    margin: 32px 0 10px 0 ;
+    margin: 32px 0 10px 0;
 }
 
 .attributes-rectangle {
@@ -321,19 +322,29 @@ a {
 }
 
 /* Cart */
+.title-cart-position{
+    margin: 160px 0 0 101px;
+
+}
 
 .title-cart {
-    color: #1d1f22;
-    font-family: "Raleway";
     font-size: 32px;
     font-weight: 700;
     height: 68px;
-    letter-spacing: 0;
-    line-height: 40px;
-    white-space: nowrap;
     text-transform: uppercase;
 }
 
+.cart-line {
+    width: 1240px;
+    height: 1px;
+    background: #E5E5E5;
+    margin-left: 101px;
+}
+
+.cart-img{
+    width: 200px;
+    height: 288px;
+}
 /* Cart Overlay */
 
 .cart-overlay {
@@ -369,15 +380,16 @@ a {
     width: 293px;
 }
 
-.cart-overlay-total-text{
+.cart-overlay-total-text {
     font-size: 16px;
     font-weight: 600;
 }
 
-.cart-overlay-price{
+.cart-overlay-price {
     font-size: 16px;
     font-weight: 700;
 }
+
 .cart-overlay-btns {
     display: flex;
     flex-direction: row;

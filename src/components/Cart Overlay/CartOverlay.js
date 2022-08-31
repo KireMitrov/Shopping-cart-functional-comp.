@@ -13,11 +13,11 @@ function CartOverlay() {
                 <div>
                     {cartItems.map((item) => (
                         <div>
-                            <div>{item.brand}</div>
                             <div>{item.name}</div>
                             <div>$50.00</div>
                             <div>Size:</div>
                             <div>Color:</div>
+                            <img src={item.gallery[0]} alt={item.name}></img>
                         </div>
                     ))}
                 </div>
