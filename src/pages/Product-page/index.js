@@ -28,19 +28,18 @@ function ProductPage() {
             <div className="product">
                 <img src={imageUrl} alt={currentProduct.name}></img>
             </div>
-            <div className="attributes-text">PRICE:</div>
             <div className="product-description">
                 <div className="product-brand">{currentProduct.brand}</div>
                 <p className="product-title">{currentProduct.name}</p>
                 <div>
                     {currentProduct.attributes.map((attribute, index) => {
                         if (attribute.type === 'text')
-                            return <div key={index}>
+                        return <div key={index}>
                                 <p className="attributes-text">{attribute.name}:</p>
                                 <div className="attributes-container">
                                     {attribute.items.map((value) => (
                                         <div className="attributes-rectangle" key={value.value}>{value.value}</div>
-                                    ))}
+                                        ))}
                                 </div>
                             </div>
                         return <div key={index}>
@@ -48,7 +47,7 @@ function ProductPage() {
                             <div className="attributes-container">
                                 {attribute.items.map((value) => (
                                     <div className="attributes-rectangle-color" style={{ backgroundColor: `${value.value}` }} key={value.value}></div>
-                                ))}
+                                    ))}
                             </div>
 
                         </div>
@@ -56,6 +55,7 @@ function ProductPage() {
                     )}
                 </div>
                 <div>
+                    <div className="attributes-text">PRICE:</div>
                     <div className="product-description-price">$50.00</div>
                 </div>
                 <button onClick={() => addToCart(product)}>ADD TO CART</button>
