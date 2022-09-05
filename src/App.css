@@ -8,7 +8,7 @@ a {
     text-decoration: none;
 }
 
-/* Header */
+/* Navbar */
 
 .header {
     position: absolute;
@@ -39,21 +39,27 @@ a {
     bottom: 0px;
 }
 
-.navigation-element:hover {
-    color: #5ECE7B;
+.navigation a:hover {
     border-bottom: 2px solid #5ECE7B;
-    cursor: pointer;
 }
 
 .label {
-    font-family: 'Raleway';
-    font-style: normal;
     font-weight: 400;
     font-size: 16px;
     line-height: 120%;
     text-transform: uppercase;
 }
 
+.navigation a:hover .label{
+    color: #5ECE7B;
+}
+.label-active{
+    color: #5ECE7B;
+}
+
+.tab-active{
+    border-bottom: 2px solid #5ECE7B;
+}
 .actions {
     display: flex;
     flex-direction: row;
@@ -61,7 +67,6 @@ a {
     align-items: center;
     padding: 0px;
     gap: 22px;
-
     position: absolute;
     width: 204px;
     height: 40px;

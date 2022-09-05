@@ -1,16 +1,17 @@
 import './App.css';
-import Header from './components/Header/Header';
 import "@fontsource/raleway";
 import { Routes, Route, Navigate } from "react-router";
 import Cart from './pages/Cart';
 import Category from './pages/Category-page/Category';
 import ProductPage from './pages/Product-page';
+import Navbar from './components/Navbar/Navbar';
+
 
 function App() {
 
   return (
     <div>
-      <Header></Header>
+      <Navbar></Navbar>
       <Routes>
         <Route path="/:categoryName" element={<Category></Category>}></Route>
         <Route path="/:categoryName/:product" element={<ProductPage></ProductPage>}></Route>

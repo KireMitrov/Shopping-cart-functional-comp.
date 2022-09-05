@@ -5,7 +5,7 @@ import CartOverlay from "../Cart Overlay/CartOverlay";
 import { useClickOutside } from "../../hooks/useClickOutside";
 
 
-function Header() {
+function Navbar() {
 
     const { data, CartIsOpen, setCartIsOpen, categoryName, setCategoryName } = useContext(ProductsContext);
     const cartRef = useRef();
@@ -26,9 +26,9 @@ function Header() {
             <img className="logo" src="a-logo.svg" alt="logo"></img>
             <div className="navigation">
                 {data.categories.map((category) => (
-                    <Link to={category.name}  key={category.name}>
-                        <div  onClick={()=>setCategoryName(category.name)} className="navigation-element">
-                            <p className="label">{category.name}</p>
+                    <Link to={category.name}  key={category.name} onClick={()=>setCategoryName(category.name)}>
+                        <div className={`navigation-element ${category.name === categoryName ? "tab-active" : ""}`} >
+                            <p className={`label ${category.name === categoryName ? "label-active" : ""}`}>{category.name}</p>
                         </div>
                     </Link>
                 ))}
@@ -49,4 +49,4 @@ function Header() {
     )
 }
 
-export default Header
+export default Navbar
