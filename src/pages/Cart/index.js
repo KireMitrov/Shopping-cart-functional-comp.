@@ -3,7 +3,7 @@ import { ProductsContext } from "../../context/productsContext";
 
 function Cart() {
 
-    const { cartItems } = useContext(ProductsContext);
+    const { cartItems, currency } = useContext(ProductsContext);
 
     return (
         <div>
@@ -56,7 +56,7 @@ function Cart() {
             <div className="cart-order-container">
                 <div>Tax 21%: $21.00</div>
                 <div>Quantity: {cartItems.length}</div>
-                <div>Total: $300.00</div>
+                <div>Total: {currency}300.00</div>
                 <button className="cart-order-btn">ORDER</button>
             </div>
         </div>

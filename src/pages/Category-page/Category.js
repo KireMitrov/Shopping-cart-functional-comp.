@@ -5,9 +5,9 @@ import ProductCard from "../../components/Product card/ProductCard";
 
 function Category() {
 
-    const { data, CartIsOpen, categoryName } = useContext(ProductsContext);
+    const { productsData, CartIsOpen, categoryName } = useContext(ProductsContext);
 
-    const category = data.categories.find((cat) => cat.name.toLowerCase() === categoryName.toLowerCase());
+    const category = productsData.categories.find((cat) => cat.name.toLowerCase() === categoryName.toLowerCase());
 
 
     return (

@@ -30,30 +30,42 @@ const PRODUCTS_QUERY = gql`
     }
   }
 `;
+const CURRENCY_QUERY = gql`
+{
+    currencies{
+      symbol
+      label
+    }
+  }
+`;
+
 
 const ProductsContext = createContext();
 
 const ProductsProvider = ({ children }) => {
-
-  const { data, loading, error } = useQuery(PRODUCTS_QUERY);
+  
+  const { data:productsData, loading, error } = useQuery(PRODUCTS_QUERY);
+  const { data: currencyData, loading: currencyLoading, error:currencyError } = useQuery(CURRENCY_QUERY);
   const [CartIsOpen, setCartIsOpen] = useState(false);
   const [categoryName, setCategoryName] = useState("all");
   const [cartItems, setCartItems] = useState([]);
+  const [currency, setCurrency] = useState('$')
+
 
   function addToCart(name) {
-    let itemToAdd = data.categories[0].products.find((item) => item.name.toLowerCase() === name.toLowerCase()
+    let itemToAdd = productsData.categories[0].products.find((item) => item.name.toLowerCase() === name.toLowerCase()
         );
     cartItems.push(itemToAdd);
     console.log(cartItems)
 }
-  
+console.log(productsData, currencyData)
   
   if (loading) return "Loading...";
   if (error) return <pre>{error.message}</pre>
   
-  console.log(data.categories[0].name);
+  
 
-  const value = { data, CartIsOpen, setCartIsOpen, categoryName, setCategoryName, addToCart, cartItems }
+  const value = { productsData, currencyData, currency, setCurrency, CartIsOpen, setCartIsOpen, categoryName, setCategoryName, addToCart, cartItems }
   return <ProductsContext.Provider value={value}>{children}</ProductsContext.Provider>;
 }
 

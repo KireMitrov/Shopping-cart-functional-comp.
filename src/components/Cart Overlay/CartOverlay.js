@@ -4,7 +4,7 @@ import { ProductsContext } from "../../context/productsContext";
 
 function CartOverlay() {
 
-    const { setCartIsOpen, cartItems } = useContext(ProductsContext);
+    const { setCartIsOpen, cartItems, currency } = useContext(ProductsContext);
 
     return (
         <div className="cart-overlay" >
@@ -53,7 +53,7 @@ function CartOverlay() {
             ))}
                 <div className="cart-overlay-total">
                     <div className="cart-overlay-total-text">Total</div>
-                    <div className="cart-overlay-price">$299,00</div>
+                    <div className="cart-overlay-price">{currency} 299,00</div>
                 </div>
             <div className="cart-overlay-btns">
                 <Link to="cart"><button className="cart-overlay-view-bag" onClick={() => (setCartIsOpen(false))} >VIEW BAG</button></Link>

@@ -6,8 +6,8 @@ import { ProductsContext } from "../../context/productsContext";
 function ProductPage() {
 
     const { product } = useParams();
-    const { data } = useContext(ProductsContext);
-    const currentProduct = data.categories[0].products.find(
+    const { productsData, currency } = useContext(ProductsContext);
+    const currentProduct = productsData.categories[0].products.find(
         (e) => e.name.toLowerCase() === product.toLowerCase()
     );
     const [imageUrl, setImageUrl] = useState(currentProduct.gallery[0]);
@@ -56,7 +56,7 @@ function ProductPage() {
                 </div>
                 <div>
                     <div className="attributes-text">PRICE:</div>
-                    <div className="product-description-price">$50.00</div>
+                    <div className="product-description-price">{currency} 50.00</div>
                 </div>
                 <button onClick={() => addToCart(product)}>ADD TO CART</button>
                 <div className="product-description-text" dangerouslySetInnerHTML={{ __html: currentProduct.description }} />

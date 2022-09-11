@@ -6,9 +6,9 @@ import { ProductsContext } from "../../context/productsContext";
 function ProductCard({ name, img }) {
 
     const [isHovered, setIsHovered] = useState(false);
-    const {data, addToCart} = useContext(ProductsContext);
+    const { currency, addToCart } = useContext(ProductsContext);
 
-    
+
     return (
         <div className="product-card" onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)}>
             <Link to={name}>
@@ -17,10 +17,10 @@ function ProductCard({ name, img }) {
                     {name}
                 </div>
                 <div className="product-price">
-                    $50.00
+                    {currency} 50.00
                 </div>
             </Link>
-            {isHovered ? <img src={'Circle Icon.svg'} className="cart-icon-small" onClick={()=>addToCart(name)}></img> : null}
+            {isHovered ? <img src={'Circle Icon.svg'} className="cart-icon-small" onClick={() => addToCart(name)}></img> : null}
         </div>
     )
 }
