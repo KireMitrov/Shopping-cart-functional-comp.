@@ -187,6 +187,19 @@ a {
     margin: 16px 16px 0 16px;
 }
 
+.img-out-of-stock {
+    background-color: #fff;
+    opacity: 0.5;
+}
+
+.out-of-stock-text {
+    color: #8D8F9A;
+    size: 24px;
+    position: relative;
+    top:222px;
+    left:135px;
+}
+
 .content {
     font-weight: 300;
     font-size: 18px;

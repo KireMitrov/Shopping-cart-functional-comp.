@@ -42,7 +42,7 @@ function Navbar() {
                     <div className="currency-sign">
                         {currency}
                     </div>
-                    <img src={currencyIsOpen ? 'VectorUp.svg':"Vector.svg"} alt="" />
+                    <img src={currencyIsOpen ? 'VectorUp.svg':"Vector.svg"} alt="arrowUpDown" />
                 </div>
                 <div className="cart-items-notification" style={{ display: cartItems.length === 0 ? "none" : "block" }}>{cartItems.length}</div>
                 <img className="cart-icon" src="Empty Cart.svg" alt="empty-cart" onClick={() => setCartIsOpen(!CartIsOpen)} />

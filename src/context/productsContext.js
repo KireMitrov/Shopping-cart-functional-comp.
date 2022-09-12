@@ -30,6 +30,7 @@ const PRODUCTS_QUERY = gql`
     }
   }
 `;
+
 const CURRENCY_QUERY = gql`
 {
     currencies{
@@ -49,16 +50,18 @@ const ProductsProvider = ({ children }) => {
   const [CartIsOpen, setCartIsOpen] = useState(false);
   const [categoryName, setCategoryName] = useState("all");
   const [cartItems, setCartItems] = useState([]);
-  const [currency, setCurrency] = useState('$')
+  const [currency, setCurrency] = useState('$');
 
-
+  
   function addToCart(name) {
     let itemToAdd = productsData.categories[0].products.find((item) => item.name.toLowerCase() === name.toLowerCase()
-        );
+    );
     setCartItems([...cartItems, itemToAdd])
     console.log(cartItems)
-}
-console.log(productsData)
+  }
+  
+  console.log(productsData )
+
   
   if (loading) return "Loading...";
   if (error) return <pre>{error.message}</pre>
