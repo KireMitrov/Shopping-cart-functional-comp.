@@ -3,22 +3,22 @@ import { Link } from "react-router-dom";
 import { ProductsContext } from "../../context/productsContext";
 import CartOverlay from "../Cart Overlay/CartOverlay";
 import { useClickOutside } from "../../hooks/useClickOutside";
-import { gql, useQuery } from "@apollo/client";
 
 
 
 function Navbar() {
 
-    const { productsData, currencyData,currency, setCurrency, CartIsOpen, setCartIsOpen, categoryName, setCategoryName } = useContext(ProductsContext);
+    const { productsData, currencyData, currency, setCurrency, CartIsOpen, setCartIsOpen, categoryName, setCategoryName, cartItems } = useContext(ProductsContext);
+    const [currencyIsOpen, setCurrencyIsOpen] = useState(false);
     const cartRef = useRef();
+    const currencyRef = useRef();
     useClickOutside(cartRef, () => setCartIsOpen(false));
-    // const currenciesSymbol = useQuery(CURRENCY_QUERY);
-    // console.log(currenciesSymbol.data.currencies[0].symbol)
-    
+    useClickOutside(currencyRef, () => setCurrencyIsOpen(false));
+
     return (
         <div className="header">
             {CartIsOpen && (
-                <div className="test" style={{
+                <div style={{
                     position: "fixed",
                     width: "100vw",
                     height: "100vh",
@@ -38,19 +38,25 @@ function Navbar() {
                 ))}
             </div>
             <div className="actions">
-                <div className="currency">
+                <div className="currency" onClick={()=> setCurrencyIsOpen(true)}>
                     <div className="currency-sign">
-                            {currencyData.currencies.map((symbol) => (
-                                <p onClick={(e)=> setCurrency(symbol.symbol)}>{symbol.symbol}  {symbol.label}</p>
-                            ))}
+                        {currency}
                     </div>
-                    {currency}
-                    <img src="Vector.svg" alt="" />
+                    <img src={currencyIsOpen ? 'VectorUp.svg':"Vector.svg"} alt="" />
                 </div>
+                <div className="cart-items-notification" style={{ display: cartItems.length === 0 ? "none" : "block" }}>{cartItems.length}</div>
                 <img className="cart-icon" src="Empty Cart.svg" alt="empty-cart" onClick={() => setCartIsOpen(!CartIsOpen)} />
             </div>
             <div style={{ display: !CartIsOpen ? "none" : "block" }} ref={cartRef}>
                 <CartOverlay></CartOverlay>
+            </div>
+            <div className="currencySelector" style={{ display: !currencyIsOpen ? "none" : "block" }} ref={currencyRef}>
+                {currencyData.currencies.map((symbol) => (
+                    <div onClick={(e) => setCurrency(symbol.symbol)} className="currencyDiv">
+                        <div>{symbol.symbol}</div>
+                        <div>{symbol.label}</div>
+                    </div>
+                ))}
             </div>
         </div>
     )

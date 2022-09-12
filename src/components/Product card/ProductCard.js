@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { ProductsContext } from "../../context/productsContext";
 
 
-function ProductCard({ name, img }) {
+function ProductCard({ name, img, price }) {
 
     const [isHovered, setIsHovered] = useState(false);
     const { currency, addToCart } = useContext(ProductsContext);
@@ -17,7 +17,7 @@ function ProductCard({ name, img }) {
                     {name}
                 </div>
                 <div className="product-price">
-                    {currency} 50.00
+                    {currency} {price}
                 </div>
             </Link>
             {isHovered ? <img src={'Circle Icon.svg'} className="cart-icon-small" onClick={() => addToCart(name)}></img> : null}

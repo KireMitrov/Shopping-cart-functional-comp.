@@ -1,4 +1,4 @@
-import React, { createContext, useState, useEffect } from "react";
+import React, { createContext, useState } from "react";
 import { useQuery, gql } from "@apollo/client";
 
 
@@ -55,13 +55,15 @@ const ProductsProvider = ({ children }) => {
   function addToCart(name) {
     let itemToAdd = productsData.categories[0].products.find((item) => item.name.toLowerCase() === name.toLowerCase()
         );
-    cartItems.push(itemToAdd);
+    setCartItems([...cartItems, itemToAdd])
     console.log(cartItems)
 }
-console.log(productsData, currencyData)
+console.log(productsData)
   
   if (loading) return "Loading...";
   if (error) return <pre>{error.message}</pre>
+  if (currencyLoading) return "Loading...";
+  if (currencyError) return <pre>{currencyError.message}</pre>
   
   
 

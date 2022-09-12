@@ -5,11 +5,9 @@ import ProductCard from "../../components/Product card/ProductCard";
 
 function Category() {
 
-    const { productsData, CartIsOpen, categoryName } = useContext(ProductsContext);
-
+    const { productsData, CartIsOpen, categoryName,currency } = useContext(ProductsContext);
     const category = productsData.categories.find((cat) => cat.name.toLowerCase() === categoryName.toLowerCase());
-
-
+    
     return (
         <div style={{ backgroundColor: !CartIsOpen ? "white" : "rgba(57, 55, 72, 0.22)" }}>
             <div className="title-position" >
@@ -18,11 +16,10 @@ function Category() {
             <div className="products">
                 {category.products.map((product) => (
                     <div className="product-card" key={product.name}>
-                        <ProductCard name={product.name} img={product.gallery[0]}></ProductCard>
+                        <ProductCard name={product.name} img={product.gallery[0]} price={product.prices[0].amount}></ProductCard>
                     </div>
                 ))}
             </div>
-
         </div>
     );
 }
