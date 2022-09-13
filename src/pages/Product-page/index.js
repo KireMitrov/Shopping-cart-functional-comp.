@@ -11,6 +11,7 @@ function ProductPage() {
         (e) => e.name.toLowerCase() === product.toLowerCase()
     );
     const [imageUrl, setImageUrl] = useState(currentProduct.gallery[0]);
+    
 
     function changeProductUrl(e) {
         setImageUrl(e.target.src)
@@ -19,8 +20,6 @@ function ProductPage() {
     function addToCart(product) {
         console.log('the product is', product)
     }
-
-    console.log(currentProduct)
 
 
     return (
@@ -34,12 +33,12 @@ function ProductPage() {
                 <div>
                     {currentProduct.attributes.map((attribute, index) => {
                         if (attribute.type === 'text')
-                        return <div key={index}>
+                            return <div key={index}>
                                 <p className="attributes-text">{attribute.name}:</p>
                                 <div className="attributes-container">
                                     {attribute.items.map((value) => (
                                         <div className="attributes-rectangle" key={value.value}>{value.value}</div>
-                                        ))}
+                                    ))}
                                 </div>
                             </div>
                         return <div key={index}>
@@ -47,7 +46,7 @@ function ProductPage() {
                             <div className="attributes-container">
                                 {attribute.items.map((value) => (
                                     <div className="attributes-rectangle-color" style={{ backgroundColor: `${value.value}` }} key={value.value}></div>
-                                    ))}
+                                ))}
                             </div>
 
                         </div>
