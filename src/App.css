@@ -320,10 +320,20 @@ a {
     font-weight: 400;
 }
 
+.attributes-rectangle:hover{
+    background-color: #1d1f22;
+    color: #fff;
+}
+
 .attributes-rectangle-color {
     width: 32px;
     height: 32px;
     border: 1px solid #5ece7b;
+}
+
+.attributes-rectangle-color:hover{
+    width: 36px;
+    height: 36px;
 }
 
 .product-description-price {

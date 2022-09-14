@@ -3,7 +3,7 @@ import { ProductsContext } from "../../context/productsContext";
 
 function Cart() {
 
-    const { cartItems, currency, currencyObj, totalPrice } = useContext(ProductsContext);
+    const { cartItems, currency, currencyObj, totalPrice, handleIncrement, handleDecrement } = useContext(ProductsContext);
     let taxPrice = totalPrice * 21 / 100;
     let totalToPay = parseFloat(taxPrice) + parseFloat(totalPrice);
 
@@ -47,9 +47,9 @@ function Cart() {
                     </div>
                     <div className="cart-items-right">
                         <div className="cart-quantity-selector">
-                            <div className="cart-minus-plus-squares">+</div>
-                            <div className="cart-item-quantity">1</div>
-                            <div className="cart-minus-plus-squares">-</div>
+                            <div className="cart-minus-plus-squares" onClick={() => handleIncrement(item.quantity, item.name)}>+</div>
+                            <div className="cart-item-quantity">{item.quantity}</div>
+                            <div className="cart-minus-plus-squares" onClick={() => handleDecrement(item.quantity, item.name)}>-</div>
                         </div>
                         <img className="cart-img" src={item.gallery[0]} alt={item.name}></img>
                     </div>
@@ -58,8 +58,8 @@ function Cart() {
             ))}
             <div className="cart-order-container">
                 <div>Tax 21%: {currency} {taxPrice.toFixed(2)}</div>
-                <div>Quantity: {cartItems.length}</div>
-                <div>Total: {currency} {totalToPay.toFixed(2)}</div>
+                <div>Quantity: <b>{cartItems.length}</b></div>
+                <div>Total: <b>{currency} {totalToPay.toFixed(2)}</b></div>
                 <button className="cart-order-btn">ORDER</button>
             </div>
         </div>

@@ -57,7 +57,7 @@ const ProductsProvider = ({ children }) => {
 
   // Adding product to cart
 
-  function addToCart(name, quantity) {
+  function addToCart(name ) {
     let itemToAdd = productsData.categories[0].products.find((item) => item.name.toLowerCase() === name.toLowerCase());
     let addedItem = cartItems.find((item) => item.name === itemToAdd.name);
     if (addedItem) {
@@ -82,18 +82,19 @@ const ProductsProvider = ({ children }) => {
         quantity: quantity += 1
       }])
     }
-
   }
 
   function handleDecrement(quantity, name) {
     let changedQuantityItem = cartItems.find((item) => item.name === name && item.quantity === quantity);
     let newCartItems = cartItems.filter((item) => item.name !== changedQuantityItem.name);
 
-    if (changedQuantityItem) {
+    if (changedQuantityItem && changedQuantityItem.quantity > 1) {
       setCartItems([...newCartItems, {
         ...changedQuantityItem,
         quantity: quantity -= 1
       }])
+    } else {
+      return;
     }
   }
 
@@ -103,9 +104,9 @@ const ProductsProvider = ({ children }) => {
 
   function calculateTotal() {
     let price = 0;
-    currencyObj.forEach(element => {
-      price += element.amount
-    });
+        cartItems.forEach((item, index) => {
+            price += item.quantity * currencyObj[index].amount
+        })
     return price.toFixed(2);
   }
 
