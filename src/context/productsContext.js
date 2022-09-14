@@ -55,9 +55,9 @@ const ProductsProvider = ({ children }) => {
 
 
 
-  // Adding product to cart
+  // Adding- removing product from cart
 
-  function addToCart(name ) {
+  function addToCart(name) {
     let itemToAdd = productsData.categories[0].products.find((item) => item.name.toLowerCase() === name.toLowerCase());
     let addedItem = cartItems.find((item) => item.name === itemToAdd.name);
     if (addedItem) {
@@ -68,33 +68,28 @@ const ProductsProvider = ({ children }) => {
     console.log(cartItems)
   }
 
-  console.log(productsData)
+  function removeFromCart(name, quantity) {
+    const leftOverItems = cartItems.filter((item) => !(name === item.name && quantity === item.quantity));
+    setCartItems(leftOverItems);
+  }
 
   // Handling increment-decrement of quantity
 
   function handleIncrement(quantity, name) {
     let changedQuantityItem = cartItems.find((item) => item.name === name && item.quantity === quantity);
-    let newCartItems = cartItems.filter((item) => item.name !== changedQuantityItem.name);
 
     if (changedQuantityItem) {
-      setCartItems([...newCartItems, {
-        ...changedQuantityItem,
-        quantity: quantity += 1
-      }])
+      changedQuantityItem.quantity += 1;
+      setCartItems([...cartItems]);
     }
   }
 
   function handleDecrement(quantity, name) {
     let changedQuantityItem = cartItems.find((item) => item.name === name && item.quantity === quantity);
-    let newCartItems = cartItems.filter((item) => item.name !== changedQuantityItem.name);
 
     if (changedQuantityItem && changedQuantityItem.quantity > 1) {
-      setCartItems([...newCartItems, {
-        ...changedQuantityItem,
-        quantity: quantity -= 1
-      }])
-    } else {
-      return;
+      changedQuantityItem.quantity -= 1;
+      setCartItems([...cartItems]);
     }
   }
 
@@ -104,9 +99,9 @@ const ProductsProvider = ({ children }) => {
 
   function calculateTotal() {
     let price = 0;
-        cartItems.forEach((item, index) => {
-            price += item.quantity * currencyObj[index].amount
-        })
+    cartItems.forEach((item, index) => {
+      price += item.quantity * currencyObj[index].amount
+    })
     return price.toFixed(2);
   }
 
@@ -119,7 +114,7 @@ const ProductsProvider = ({ children }) => {
 
 
 
-  const value = { productsData, currencyData, currency, currencyObj, setCurrency, CartIsOpen, setCartIsOpen, categoryName, setCategoryName, addToCart, cartItems, totalPrice, handleDecrement, handleIncrement }
+  const value = { productsData, currencyData, currency, currencyObj, setCurrency, CartIsOpen, setCartIsOpen, categoryName, setCategoryName, addToCart, cartItems, totalPrice, handleDecrement, handleIncrement, removeFromCart }
   return <ProductsContext.Provider value={value}>{children}</ProductsContext.Provider>;
 }
 

@@ -57,7 +57,7 @@ function Cart() {
                 </div>
             ))}
             <div className="cart-order-container">
-                <div>Tax 21%: {currency} {taxPrice.toFixed(2)}</div>
+                <div>Tax 21%: <b>{currency} {taxPrice.toFixed(2)}</b></div>
                 <div>Quantity: <b>{cartItems.length}</b></div>
                 <div>Total: <b>{currency} {totalToPay.toFixed(2)}</b></div>
                 <button className="cart-order-btn">ORDER</button>

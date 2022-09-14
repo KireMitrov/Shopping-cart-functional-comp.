@@ -576,6 +576,18 @@ a {
     height: 190px;
 }
 
+.cart-overlay-remove-btn {
+    width: 20px;
+    height: 20px;
+    border: 1px solid #1D1F22;
+    color: red;
+    font-size: 14px;
+    text-align: center;
+    position: absolute;
+    right:13px;
+    cursor: pointer;
+}
+
 .cart-overlay-total {
     display: flex;
     justify-content: space-between;

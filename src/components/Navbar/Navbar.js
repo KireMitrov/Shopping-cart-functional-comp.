@@ -52,7 +52,7 @@ function Navbar() {
             </div>
             <div className="currencySelector" style={{ display: !currencyIsOpen ? "none" : "block" }} ref={currencyRef}>
                 {currencyData.currencies.map((symbol) => (
-                    <div onClick={(e) => setCurrency(symbol.symbol)} className="currencyDiv">
+                    <div onClick={(e) => setCurrency(symbol.symbol)} className="currencyDiv" key={symbol.symbol}>
                         <div>{symbol.symbol}</div>
                         <div>{symbol.label}</div>
                     </div>

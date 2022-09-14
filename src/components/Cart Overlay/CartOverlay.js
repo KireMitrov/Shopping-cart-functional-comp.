@@ -4,7 +4,7 @@ import { ProductsContext } from "../../context/productsContext";
 
 function CartOverlay() {
 
-    const { setCartIsOpen, cartItems, currency, currencyObj, totalPrice, quantity, handleIncrement, handleDecrement } = useContext(ProductsContext);
+    const { setCartIsOpen, cartItems, currency, currencyObj, totalPrice, handleIncrement, handleDecrement, removeFromCart } = useContext(ProductsContext);
 
 
     return (
@@ -12,7 +12,7 @@ function CartOverlay() {
             <div className="cart-overlay-products-container">
                 <div><b>My Bag,</b> {cartItems.length} items</div>
                 {cartItems.map((item, index) => (
-                    <div className="cart-overlay-item-container">
+                    <div className="cart-overlay-item-container" key={index}>
                         <div className="cart-overlay-items-left">
                             <div>
                                 <div className="cart-overlay-text">{item.brand}</div>
@@ -49,6 +49,7 @@ function CartOverlay() {
                                 <div className="cart-overlay-attributes-rectangle" onClick={() => handleDecrement(item.quantity, item.name)}>-</div>
                             </div>
                             <img className="cart-img" src={item.gallery[0]} alt={item.name}></img>
+                            <div className="cart-overlay-remove-btn" onClick={()=>removeFromCart(item.name, item.quantity)}>x</div>
                         </div>
                     </div>
                 ))}
