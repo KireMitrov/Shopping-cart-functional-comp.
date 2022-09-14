@@ -54,9 +54,10 @@ const ProductsProvider = ({ children }) => {
   let currencyObj = cartItems.map((item) => item.prices.find((i) => i.currency.symbol === currency));
 
 
+
   // Adding product to cart
 
-  function addToCart(name) {
+  function addToCart(name, quantity) {
     let itemToAdd = productsData.categories[0].products.find((item) => item.name.toLowerCase() === name.toLowerCase());
     let addedItem = cartItems.find((item) => item.name === itemToAdd.name);
     if (addedItem) {
@@ -68,6 +69,33 @@ const ProductsProvider = ({ children }) => {
   }
 
   console.log(productsData)
+
+  // Handling increment-decrement of quantity
+
+  function handleIncrement(quantity, name) {
+    let changedQuantityItem = cartItems.find((item) => item.name === name && item.quantity === quantity);
+    let newCartItems = cartItems.filter((item) => item.name !== changedQuantityItem.name);
+
+    if (changedQuantityItem) {
+      setCartItems([...newCartItems, {
+        ...changedQuantityItem,
+        quantity: quantity += 1
+      }])
+    }
+
+  }
+
+  function handleDecrement(quantity, name) {
+    let changedQuantityItem = cartItems.find((item) => item.name === name && item.quantity === quantity);
+    let newCartItems = cartItems.filter((item) => item.name !== changedQuantityItem.name);
+
+    if (changedQuantityItem) {
+      setCartItems([...newCartItems, {
+        ...changedQuantityItem,
+        quantity: quantity -= 1
+      }])
+    }
+  }
 
   // Calculating total amount to pay
 
@@ -90,7 +118,7 @@ const ProductsProvider = ({ children }) => {
 
 
 
-  const value = { productsData, currencyData, currency, currencyObj, setCurrency, CartIsOpen, setCartIsOpen, categoryName, setCategoryName, addToCart, cartItems, totalPrice }
+  const value = { productsData, currencyData, currency, currencyObj, setCurrency, CartIsOpen, setCartIsOpen, categoryName, setCategoryName, addToCart, cartItems, totalPrice, handleDecrement, handleIncrement }
   return <ProductsContext.Provider value={value}>{children}</ProductsContext.Provider>;
 }
 

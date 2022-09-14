@@ -4,7 +4,7 @@ import { ProductsContext } from "../../context/productsContext";
 
 function CartOverlay() {
 
-    const { setCartIsOpen, cartItems, currency, currencyObj, totalPrice } = useContext(ProductsContext);
+    const { setCartIsOpen, cartItems, currency, currencyObj, totalPrice, quantity, handleIncrement, handleDecrement } = useContext(ProductsContext);
 
 
     return (
@@ -17,7 +17,7 @@ function CartOverlay() {
                             <div>
                                 <div className="cart-overlay-text">{item.brand}</div>
                                 <div className="cart-overlay-text">{item.name}</div>
-                                <div className="cart-overlay-product-price" >{currency} {currencyObj[index].amount}</div>
+                                <div className="cart-overlay-product-price" >{currency} {currencyObj[index].amount.toFixed(2)}</div>
                             </div>
                             <div>
                                 {item.attributes.map((attribute, index) => {
@@ -44,9 +44,9 @@ function CartOverlay() {
                         </div>
                         <div className="cart-overlay-items-right">
                             <div className="cart-quantity-selector">
-                                <div className="cart-overlay-attributes-rectangle" onClick={() => item.quantity + 1}>+</div>
+                                <div className="cart-overlay-attributes-rectangle" onClick={() => handleIncrement(item.quantity, item.name)}>+</div>
                                 <div className="cart-overlay-item-quantity">{item.quantity}</div>
-                                <div className="cart-overlay-attributes-rectangle" onClick={() => item.quantity - 1}>-</div>
+                                <div className="cart-overlay-attributes-rectangle" onClick={() => handleDecrement(item.quantity, item.name)}>-</div>
                             </div>
                             <img className="cart-img" src={item.gallery[0]} alt={item.name}></img>
                         </div>

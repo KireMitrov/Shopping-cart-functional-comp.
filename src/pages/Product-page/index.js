@@ -6,19 +6,15 @@ import { ProductsContext } from "../../context/productsContext";
 function ProductPage() {
 
     const { product } = useParams();
-    const { productsData, currency } = useContext(ProductsContext);
+    const { productsData, currency, addToCart } = useContext(ProductsContext);
     const currentProduct = productsData.categories[0].products.find(
         (e) => e.name.toLowerCase() === product.toLowerCase()
     );
     const [imageUrl, setImageUrl] = useState(currentProduct.gallery[0]);
-    
+    let currencyObj = currentProduct.prices.find((i) => i.currency.symbol === currency)
 
     function changeProductUrl(e) {
         setImageUrl(e.target.src)
-    }
-
-    function addToCart(product) {
-        console.log('the product is', product)
     }
 
 
@@ -55,9 +51,9 @@ function ProductPage() {
                 </div>
                 <div>
                     <div className="attributes-text">PRICE:</div>
-                    <div className="product-description-price">{currency} 50.00</div>
+                    <div className="product-description-price">{currency} {currencyObj.amount.toFixed(2)}</div>
                 </div>
-                <button onClick={() => addToCart(product)}>ADD TO CART</button>
+                <button onClick={() => addToCart(currentProduct.name)}>ADD TO CART</button>
                 <div className="product-description-text" dangerouslySetInnerHTML={{ __html: currentProduct.description }} />
             </div>
             <div className="product-images">
