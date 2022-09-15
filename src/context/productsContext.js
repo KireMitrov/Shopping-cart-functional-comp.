@@ -60,10 +60,12 @@ const ProductsProvider = ({ children }) => {
   function addToCart(name) {
     let itemToAdd = productsData.categories[0].products.find((item) => item.name.toLowerCase() === name.toLowerCase());
     let addedItem = cartItems.find((item) => item.name === itemToAdd.name);
+    let attributesArray = itemToAdd.attributes.map((item) => ( {name: item.name, defaultValue: item.items[0] }) )
+
     if (addedItem) {
       setCartItems([...cartItems])
     } else {
-      setCartItems([...cartItems, { ...itemToAdd, quantity: 1 }])
+      setCartItems([...cartItems, { ...itemToAdd, quantity: 1, addedAttributes:attributesArray }])
     }
     console.log(cartItems)
   }

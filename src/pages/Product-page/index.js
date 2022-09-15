@@ -44,7 +44,6 @@ function ProductPage() {
                                     <div className="attributes-rectangle-color" style={{ backgroundColor: `${value.value}` }} key={value.value}></div>
                                 ))}
                             </div>
-
                         </div>
                     }
                     )}
@@ -62,7 +61,6 @@ function ProductPage() {
                 ))}
             </div>
         </div>
-
     )
 }
 

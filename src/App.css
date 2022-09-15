@@ -152,12 +152,9 @@ a {
     top: 160px;
     display: flex;
     align-items: center;
-
 }
 
 .title {
-    color: #1d1f22;
-    font-family: "Raleway";
     font-size: 42px;
     font-weight: 400;
     height: 68px;
@@ -206,14 +203,12 @@ a {
     font-weight: 300;
     font-size: 18px;
     width: 354px;
-    color: #1D1F22;
     margin: 24px 16px 0 16px;
 }
 
 .product-price {
     font-weight: 600;
     font-size: 18px;
-    color: #1D1F22;
     margin: 16px 16px;
 }
 
@@ -275,8 +270,6 @@ a {
 }
 
 .product-brand {
-    color: #1d1f22;
-    font-family: "Raleway";
     font-weight: 600;
     font-size: 42px;
     height: 27px;
@@ -286,8 +279,6 @@ a {
 }
 
 .product-title {
-    color: rgb(29, 31, 34);
-    font-family: "Raleway";
     font-weight: 400;
     font-size: 30px;
     height: 27px;
@@ -340,7 +331,6 @@ a {
     letter-spacing: 0;
     white-space: nowrap;
     font-size: 24px;
-    color: #1D1F22;
     font-weight: 700;
     text-transform: uppercase;
     margin-bottom: 20px;
@@ -349,7 +339,6 @@ a {
 .product-description button {
     padding: 16px 32px;
     width: 292px;
-    font-family: "Raleway";
     font-weight: 600;
     color: rgb(255, 255, 255, 1);
     background-color: rgba(94, 206, 123, 1);
@@ -454,7 +443,6 @@ a {
 .cart-minus-plus-squares {
     width: 45px;
     height: 45px;
-    color: #1d1f22;
     border: 1px solid #1d1f22;
     display: flex;
     align-items: center;
