@@ -4,8 +4,7 @@ import { ProductsContext } from "../../context/productsContext";
 
 function CartOverlay() {
 
-    const { setCartIsOpen, cartItems, currency, currencyObj, totalPrice, handleIncrement, handleDecrement, removeFromCart } = useContext(ProductsContext);
-
+    const { setCartIsOpen, cartItems, currency, currencyObj, totalPrice, handleIncrement, handleDecrement, removeFromCart, handleTextAttributeChange } = useContext(ProductsContext);
 
     return (
         <div className="cart-overlay" >
@@ -26,7 +25,10 @@ function CartOverlay() {
                                             <p className="cart-overlay-attributes-text">{attribute.name}:</p>
                                             <div className="attributes-container">
                                                 {attribute.items.map((value) => (
-                                                    <div className="cart-overlay-attributes-rectangle" key={value.value}>{value.value}</div>
+                                                    <div 
+                                                    className={`cart-overlay-attributes-rectangle ${ item.addedAttributes[index].defaultValue === value.value ? "atributes-selected" : ""}`} 
+                                                    key={value.value} 
+                                                    onClick={()=> handleTextAttributeChange(value.value, item.name, attribute.name)}>{value.value}</div>
                                                 ))}
                                             </div>
                                         </div>

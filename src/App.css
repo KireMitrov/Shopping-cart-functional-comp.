@@ -539,6 +539,10 @@ a {
     text-align: center;
     cursor: pointer;
 }
+.atributes-selected {
+    background-color: #1D1F22;
+    color:#fff
+}
 
 .cart-overlay-attributes-rectangle-color {
     width: 16px;
@@ -567,9 +571,8 @@ a {
 .cart-overlay-remove-btn {
     width: 20px;
     height: 20px;
-    border: 1px solid #1D1F22;
     color: red;
-    font-size: 14px;
+    font-size: 16px;
     text-align: center;
     position: absolute;
     right:13px;

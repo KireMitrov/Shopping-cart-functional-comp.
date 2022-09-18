@@ -60,12 +60,12 @@ const ProductsProvider = ({ children }) => {
   function addToCart(name) {
     let itemToAdd = productsData.categories[0].products.find((item) => item.name.toLowerCase() === name.toLowerCase());
     let addedItem = cartItems.find((item) => item.name === itemToAdd.name);
-    let attributesArray = itemToAdd.attributes.map((item) => ( {name: item.name, defaultValue: item.items[0] }) )
+    let attributesArray = itemToAdd.attributes.map((item) => ({ name: item.name, defaultValue: item.items[0].value }))
 
     if (addedItem) {
       setCartItems([...cartItems])
     } else {
-      setCartItems([...cartItems, { ...itemToAdd, quantity: 1, addedAttributes:attributesArray }])
+      setCartItems([...cartItems, { ...itemToAdd, quantity: 1, addedAttributes: attributesArray }])
     }
     console.log(cartItems)
   }
@@ -95,6 +95,14 @@ const ProductsProvider = ({ children }) => {
     }
   }
 
+  // Handling attribute change
+  function handleTextAttributeChange(value, name, attribute) {
+    let changedItem = cartItems.find((item) => item.name === name);
+    let attributeToChange = changedItem.addedAttributes.findIndex((att) => att.name === attribute);
+    changedItem.addedAttributes[attributeToChange]["defaultValue"] = value;
+      setCartItems([...cartItems]);
+      console.log(cartItems)
+  }
   // Calculating total amount to pay
 
   let totalPrice = calculateTotal();
@@ -116,7 +124,7 @@ const ProductsProvider = ({ children }) => {
 
 
 
-  const value = { productsData, currencyData, currency, currencyObj, setCurrency, CartIsOpen, setCartIsOpen, categoryName, setCategoryName, addToCart, cartItems, totalPrice, handleDecrement, handleIncrement, removeFromCart }
+  const value = { productsData, currencyData, currency, currencyObj, setCurrency, CartIsOpen, setCartIsOpen, categoryName, setCategoryName, addToCart, cartItems, totalPrice, handleDecrement, handleIncrement, removeFromCart, handleTextAttributeChange }
   return <ProductsContext.Provider value={value}>{children}</ProductsContext.Provider>;
 }
 
