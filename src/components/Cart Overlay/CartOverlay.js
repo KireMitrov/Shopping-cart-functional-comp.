@@ -49,9 +49,9 @@ function CartOverlay() {
                         </div>
                         <div className="cart-overlay-items-right">
                             <div className="cart-quantity-selector">
-                                <div className="cart-overlay-attributes-rectangle" onClick={() => handleIncrement(item.quantity, item.name)}>+</div>
+                                <div className="cart-overlay-attributes-rectangle" onClick={() => handleIncrement(item)}>+</div>
                                 <div className="cart-overlay-item-quantity">{item.quantity}</div>
-                                <div className="cart-overlay-attributes-rectangle" onClick={() => handleDecrement(item.quantity, item.name)}>-</div>
+                                <div className="cart-overlay-attributes-rectangle" onClick={() => handleDecrement(item)}>-</div>
                             </div>
                             <img className="cart-img" src={item.gallery[0]} alt={item.name}></img>
                             <div className="cart-overlay-remove-btn" onClick={()=>removeFromCart(item)}>x</div>
