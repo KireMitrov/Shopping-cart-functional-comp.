@@ -8,7 +8,7 @@ import { useClickOutside } from "../../hooks/useClickOutside";
 
 function Navbar() {
 
-    const { productsData, currencyData, currency, setCurrency, CartIsOpen, setCartIsOpen, categoryName, setCategoryName, cartItems } = useContext(ProductsContext);
+    const { productsData, currencyData, currency, setCurrency, CartIsOpen, setCartIsOpen, categoryName, setCategoryName, cartItems, totalItems } = useContext(ProductsContext);
     const [currencyIsOpen, setCurrencyIsOpen] = useState(false);
     const cartRef = useRef();
     const currencyRef = useRef();
@@ -39,12 +39,12 @@ function Navbar() {
             </div>
             <div className="actions">
                 <div className="currency" onClick={()=> setCurrencyIsOpen(true)}>
-                    <div className="currency-sign">
+                    <div className="currency-sign" >
                         {currency}
                     </div>
                     <img src={currencyIsOpen ? 'VectorUp.svg':"Vector.svg"} alt="arrowUpDown" />
                 </div>
-                <div className="cart-items-notification" style={{ display: cartItems.length === 0 ? "none" : "block" }}>{cartItems.length}</div>
+                <div className="cart-items-notification" style={{ display: cartItems.length === 0 ? "none" : "block" }}>{totalItems}</div>
                 <img className="cart-icon" src="Empty Cart.svg" alt="empty-cart" onClick={() => setCartIsOpen(!CartIsOpen)} />
             </div>
             <div style={{ display: !CartIsOpen ? "none" : "block" }} ref={cartRef}>
@@ -52,7 +52,7 @@ function Navbar() {
             </div>
             <div className="currencySelector" style={{ display: !currencyIsOpen ? "none" : "block" }} ref={currencyRef}>
                 {currencyData.currencies.map((symbol) => (
-                    <div onClick={(e) => setCurrency(symbol.symbol)} className="currencyDiv" key={symbol.symbol}>
+                    <div onClick={(e) => {setCurrency(symbol.symbol); setCurrencyIsOpen(false) }} className="currencyDiv" key={symbol.symbol}>
                         <div>{symbol.symbol}</div>
                         <div>{symbol.label}</div>
                     </div>

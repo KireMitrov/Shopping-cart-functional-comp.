@@ -7,11 +7,17 @@ function ProductPage() {
 
     const { product } = useParams();
     const { productsData, currency, addToCart } = useContext(ProductsContext);
-    const currentProduct = productsData.categories[0].products.find(
-        (e) => e.name.toLowerCase() === product.toLowerCase()
-    );
+    const currentProduct = productsData.categories[0].products.find((e) => e.name.toLowerCase() === product.toLowerCase());
+    let attributesArray = currentProduct.attributes.map((item) => ({ name: item.name, defaultValue: item.items[0].value }));
+    const [productWithAtt, setProductWithAtt] = useState({ ...currentProduct, addedAttributes: attributesArray });
     const [imageUrl, setImageUrl] = useState(currentProduct.gallery[0]);
     let currencyObj = currentProduct.prices.find((i) => i.currency.symbol === currency)
+
+    function changeAtt(value, attribute) {
+        let attributeToChange = productWithAtt.addedAttributes.findIndex((att) => att.name === attribute);
+        productWithAtt.addedAttributes[attributeToChange]["defaultValue"] = value;
+        setProductWithAtt({ ...productWithAtt });
+    }
 
     function changeProductUrl(e) {
         setImageUrl(e.target.src)
@@ -33,7 +39,9 @@ function ProductPage() {
                                 <p className="attributes-text">{attribute.name}:</p>
                                 <div className="attributes-container">
                                     {attribute.items.map((value) => (
-                                        <div className="attributes-rectangle" key={value.value}>{value.value}</div>
+                                        <div className={`attributes-rectangle ${productWithAtt.addedAttributes[index].defaultValue === value.value ? "atributes-selected" : ""}`}
+                                            key={value.value}
+                                            onClick={() => changeAtt(value.value, attribute.name)}>{value.value}</div>
                                     ))}
                                 </div>
                             </div>
@@ -41,7 +49,10 @@ function ProductPage() {
                             <p className="attributes-text">{attribute.name}:</p>
                             <div className="attributes-container">
                                 {attribute.items.map((value) => (
-                                    <div className="attributes-rectangle-color" style={{ backgroundColor: `${value.value}` }} key={value.value}></div>
+                                    <div className={`attributes-rectangle-color ${productWithAtt.addedAttributes[index].defaultValue === value.value ? "cart-attributes-color-selected" : ""}`}
+                                        style={{ backgroundColor: `${value.value}` }}
+                                        key={value.value}
+                                        onClick={() => changeAtt(value.value, attribute.name)}></div>
                                 ))}
                             </div>
                         </div>
@@ -52,12 +63,12 @@ function ProductPage() {
                     <div className="attributes-text">PRICE:</div>
                     <div className="product-description-price">{currency} {currencyObj.amount.toFixed(2)}</div>
                 </div>
-                <button onClick={() => addToCart(currentProduct.name)}>ADD TO CART</button>
+                <button onClick={() => addToCart(currentProduct.name, productWithAtt)}>ADD TO CART</button>
                 <div className="product-description-text" dangerouslySetInnerHTML={{ __html: currentProduct.description }} />
             </div>
             <div className="product-images">
                 {currentProduct.gallery.map((url, index) => (
-                    <img src={url} onClick={changeProductUrl} key={index}></img>
+                    <img src={url} onClick={changeProductUrl} key={index} alt={url}></img>
                 ))}
             </div>
         </div>

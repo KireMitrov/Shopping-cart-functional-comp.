@@ -52,27 +52,48 @@ const ProductsProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState([]);
   const [currency, setCurrency] = useState('$');
   let currencyObj = cartItems.map((item) => item.prices.find((i) => i.currency.symbol === currency));
+  const [totalItems, setTotalItems] = useState(0)
 
 
 
   // Adding- removing product from cart
 
-  function addToCart(name) {
+  function addToCart(name, productWithAtt) {
     let itemToAdd = productsData.categories[0].products.find((item) => item.name.toLowerCase() === name.toLowerCase());
     let addedItem = cartItems.find((item) => item.name === itemToAdd.name);
     let attributesArray = itemToAdd.attributes.map((item) => ({ name: item.name, defaultValue: item.items[0].value }))
-
-    if (addedItem) {
-      setCartItems([...cartItems])
-    } else {
-      setCartItems([...cartItems, { ...itemToAdd, quantity: 1, addedAttributes: attributesArray }])
+    // console.log(JSON.stringify(item.addedAttributes) === JSON.stringify(itemToAdd.addedAttributes))
+    // && JSON.stringify(item.addedAttributes) === JSON.stringify(itemToAdd.addedAttributes))
+    if (addedItem && productWithAtt) {
+      if (JSON.stringify(addedItem.addedAttributes) === JSON.stringify(productWithAtt.addedAttributes)) {
+        console.log('hi from same attributes')
+        setCartItems([...cartItems])
+      } else {
+        console.log("not same")
+        setCartItems([...cartItems, { ...productWithAtt, quantity:1 }]);
+        setTotalItems(totalItems + 1);
+        return;
+      }
+      // let productFC = cartItems.find((item) => item.name === itemToAdd.name && JSON.stringify(item.addedAttributes) === JSON.stringify(productWithAtt.addedAttributes)) ;
+      // console.log(JSON.stringify(productWithAtt.addedAttributes));
+      // setCartItems([...cartItems]);
     }
-    console.log(cartItems)
+    if (addedItem) {
+      console.log("hi from only added item")
+      setCartItems([...cartItems])
+
+    } else {
+      console.log("hi from else")
+      setCartItems([...cartItems, { ...itemToAdd, quantity: 1, addedAttributes: attributesArray }]);
+      setTotalItems(totalItems + 1)
+    }
   }
 
-  function removeFromCart(name, quantity) {
-    const leftOverItems = cartItems.filter((item) => !(name === item.name && quantity === item.quantity));
+  function removeFromCart({name, quantity, addedAttributes}) {
+    console.log(name, quantity, addedAttributes)
+    const leftOverItems = cartItems.filter((item) => !(name === item.name && quantity === item.quantity && JSON.stringify(item.addedAttributes)===JSON.stringify(addedAttributes)));
     setCartItems(leftOverItems);
+    setTotalItems(totalItems - quantity)
   }
 
   // Handling increment-decrement of quantity
@@ -83,6 +104,7 @@ const ProductsProvider = ({ children }) => {
     if (changedQuantityItem) {
       changedQuantityItem.quantity += 1;
       setCartItems([...cartItems]);
+      setTotalItems(totalItems + 1)
     }
   }
 
@@ -92,16 +114,20 @@ const ProductsProvider = ({ children }) => {
     if (changedQuantityItem && changedQuantityItem.quantity > 1) {
       changedQuantityItem.quantity -= 1;
       setCartItems([...cartItems]);
+      setTotalItems(totalItems - 1)
     }
   }
 
   // Handling attribute change
+
   function handleTextAttributeChange(value, name, attribute) {
     let changedItem = cartItems.find((item) => item.name === name);
-    let attributeToChange = changedItem.addedAttributes.findIndex((att) => att.name === attribute);
-    changedItem.addedAttributes[attributeToChange]["defaultValue"] = value;
+    if (changedItem) {
+      let attributeToChange = changedItem.addedAttributes.findIndex((att) => att.name === attribute);
+      changedItem.addedAttributes[attributeToChange]["defaultValue"] = value;
       setCartItems([...cartItems]);
       console.log(cartItems)
+    }
   }
   // Calculating total amount to pay
 
@@ -124,7 +150,7 @@ const ProductsProvider = ({ children }) => {
 
 
 
-  const value = { productsData, currencyData, currency, currencyObj, setCurrency, CartIsOpen, setCartIsOpen, categoryName, setCategoryName, addToCart, cartItems, totalPrice, handleDecrement, handleIncrement, removeFromCart, handleTextAttributeChange }
+  const value = { productsData, currencyData, currency, currencyObj, setCurrency, CartIsOpen, setCartIsOpen, categoryName, setCategoryName, addToCart, cartItems, totalPrice, handleDecrement, handleIncrement, removeFromCart, handleTextAttributeChange, totalItems }
   return <ProductsContext.Provider value={value}>{children}</ProductsContext.Provider>;
 }
 

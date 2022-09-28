@@ -4,12 +4,12 @@ import { ProductsContext } from "../../context/productsContext";
 
 function CartOverlay() {
 
-    const { setCartIsOpen, cartItems, currency, currencyObj, totalPrice, handleIncrement, handleDecrement, removeFromCart, handleTextAttributeChange } = useContext(ProductsContext);
+    const { setCartIsOpen, cartItems, currency, currencyObj, totalPrice, handleIncrement, handleDecrement, removeFromCart, handleTextAttributeChange, totalItems } = useContext(ProductsContext);
 
     return (
         <div className="cart-overlay" >
             <div className="cart-overlay-products-container">
-                <div><b>My Bag,</b> {cartItems.length} items</div>
+                <div><b>My Bag,</b> {totalItems} items</div>
                 {cartItems.map((item, index) => (
                     <div className="cart-overlay-item-container" key={index}>
                         <div className="cart-overlay-items-left">
@@ -36,7 +36,10 @@ function CartOverlay() {
                                         <p className="cart-overlay-attributes-text">{attribute.name}:</p>
                                         <div className="attributes-container">
                                             {attribute.items.map((value) => (
-                                                <div className="cart-overlay-attributes-rectangle-color" style={{ backgroundColor: `${value.value}` }} key={value.value}></div>
+                                                <div className={`cart-overlay-attributes-rectangle-color ${ item.addedAttributes[index].defaultValue === value.value ? "cart-overlay-color-selected" : ""}`} 
+                                                style={{ backgroundColor: `${value.value}` }} 
+                                                key={value.value}
+                                                onClick={()=> handleTextAttributeChange(value.value, item.name, attribute.name)}></div>
                                             ))}
                                         </div>
                                     </div>
@@ -51,7 +54,7 @@ function CartOverlay() {
                                 <div className="cart-overlay-attributes-rectangle" onClick={() => handleDecrement(item.quantity, item.name)}>-</div>
                             </div>
                             <img className="cart-img" src={item.gallery[0]} alt={item.name}></img>
-                            <div className="cart-overlay-remove-btn" onClick={()=>removeFromCart(item.name, item.quantity)}>x</div>
+                            <div className="cart-overlay-remove-btn" onClick={()=>removeFromCart(item)}>x</div>
                         </div>
                     </div>
                 ))}
