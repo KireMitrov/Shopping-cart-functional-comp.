@@ -3,12 +3,13 @@ import { Link } from "react-router-dom";
 import { ProductsContext } from "../../context/productsContext";
 import CartOverlay from "../Cart Overlay/CartOverlay";
 import { useClickOutside } from "../../hooks/useClickOutside";
+import { productsData, currencyData } from "../../fakeData/fakeData"
 
 
 
 function Navbar() {
-
-    const { productsData, currencyData, currency, setCurrency, CartIsOpen, setCartIsOpen, categoryName, setCategoryName, cartItems, totalItems } = useContext(ProductsContext);
+    // console.log(currencies)
+    const { currency, setCurrency, CartIsOpen, setCartIsOpen, categoryName, setCategoryName, cartItems, totalItems } = useContext(ProductsContext);
     const [currencyIsOpen, setCurrencyIsOpen] = useState(false);
     const cartRef = useRef();
     const currencyRef = useRef();

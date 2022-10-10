@@ -1,12 +1,13 @@
 import React, { useContext, useState } from "react";
 import { useParams } from "react-router";
 import { ProductsContext } from "../../context/productsContext";
+import { productsData } from "../../fakeData/fakeData"
 
 
 function ProductPage() {
 
     const { product } = useParams();
-    const { productsData, currency, addToCart } = useContext(ProductsContext);
+    const { currency, addToCart } = useContext(ProductsContext);
     const currentProduct = productsData.categories[0].products.find((e) => e.name.toLowerCase() === product.toLowerCase());
     let attributesArray = currentProduct.attributes.map((item) => ({ name: item.name, defaultValue: item.items[0].value }));
     const [productWithAtt, setProductWithAtt] = useState({ ...currentProduct, addedAttributes: attributesArray });
@@ -14,8 +15,8 @@ function ProductPage() {
     let currencyObj = currentProduct.prices.find((i) => i.currency.symbol === currency)
 
     function changeAtt(value, attribute) {
-        let attributeToChange = productWithAtt.addedAttributes.findIndex((att) => att.name === attribute);
-        productWithAtt.addedAttributes[attributeToChange]["defaultValue"] = value;
+        let attributeIndex = productWithAtt.addedAttributes.findIndex((att) => att.name === attribute);
+        productWithAtt.addedAttributes[attributeIndex]["defaultValue"] = value;
         setProductWithAtt({ ...productWithAtt });
     }
 

@@ -1,52 +1,54 @@
 import React, { createContext, useState } from "react";
-import { useQuery, gql } from "@apollo/client";
+// import { useQuery, gql } from "@apollo/client";
+import { productsData, currencyData } from "../fakeData/fakeData"
 
 
-const PRODUCTS_QUERY = gql`
-{
-    categories{
-      name
-      products{
-        name
-        inStock
-        gallery
-        description
-        brand
-        attributes{
-          name
-          type
-          items{
-            value
-          }
-        }
-        prices{
-          currency{
-            label
-            symbol
-          }
-          amount
-        }
-      }
-    }
-  }
-`;
 
-const CURRENCY_QUERY = gql`
-{
-    currencies{
-      symbol
-      label
-    }
-  }
-`;
+// const PRODUCTS_QUERY = gql`
+// {
+//     categories{
+//       name
+//       products{
+//         name
+//         inStock
+//         gallery
+//         description
+//         brand
+//         attributes{
+//           name
+//           type
+//           items{
+//             value
+//           }
+//         }
+//         prices{
+//           currency{
+//             label
+//             symbol
+//           }
+//           amount
+//         }
+//       }
+//     }
+//   }
+// `;
+
+// const CURRENCY_QUERY = gql`
+// {
+//     currencies{
+//       symbol
+//       label
+//     }
+//   }
+// `;
 
 
 const ProductsContext = createContext();
 
 const ProductsProvider = ({ children }) => {
 
-  const { data: productsData, loading, error } = useQuery(PRODUCTS_QUERY);
-  const { data: currencyData, loading: currencyLoading, error: currencyError } = useQuery(CURRENCY_QUERY);
+  // const { data: productsData, loading, error } = useQuery(PRODUCTS_QUERY);
+  // const { data: currencyData, loading: currencyLoading, error: currencyError } = useQuery(CURRENCY_QUERY);
   const [CartIsOpen, setCartIsOpen] = useState(false);
   const [categoryName, setCategoryName] = useState("all");
   const [cartItems, setCartItems] = useState([]);
@@ -64,17 +66,34 @@ const ProductsProvider = ({ children }) => {
     let attributesArray = itemToAdd.attributes.map((item) => ({ name: item.name, defaultValue: item.items[0].value }))
 
     if (addedItem && productWithAtt) {
-      if (JSON.stringify(addedItem.addedAttributes) === JSON.stringify(productWithAtt.addedAttributes)) {
+      let existingItem = cartItems.some((item) => JSON.stringify(item.addedAttributes) === JSON.stringify(productWithAtt.addedAttributes) );
+  
+      if (existingItem) {
         setCartItems([...cartItems])
+        return;
       } else {
         setCartItems([...cartItems, { ...productWithAtt, quantity: 1 }]);
         setTotalItems(totalItems + 1);
         return;
-      }
-
+      } 
     }
+
+    if (productWithAtt){
+      const existingProductWithAtt = cartItems.find((item) => item.name === productWithAtt.name && JSON.stringify(item.addedAttributes) === JSON.stringify(productWithAtt.addedAttributes));
+      if (existingProductWithAtt){
+        setCartItems([...cartItems]);
+        return;
+      } else {
+
+        setCartItems([...cartItems, {...productWithAtt, quantity: 1}])
+        setTotalItems(totalItems + 1);
+        return;
+      }
+    }
+
     if (addedItem) {
       setCartItems([...cartItems])
+      return;
 
     } else {
       setCartItems([...cartItems, { ...itemToAdd, quantity: 1, addedAttributes: attributesArray }]);
@@ -118,7 +137,6 @@ const ProductsProvider = ({ children }) => {
       let attributeToChange = changedItem.addedAttributes.findIndex((att) => att.name === attribute);
       changedItem.addedAttributes[attributeToChange]["defaultValue"] = value;
       setCartItems([...cartItems]);
-      console.log(cartItems)
     }
   }
   // Calculating total amount to pay
@@ -135,14 +153,18 @@ const ProductsProvider = ({ children }) => {
 
   // Handling error in fetching
 
-  if (loading) return "Loading...";
-  if (error) return <pre>{error.message}</pre>
-  if (currencyLoading) return "Loading...";
-  if (currencyError) return <pre>{currencyError.message}</pre>
+  // if (loading) return "Loading...";
+  // if (error) return <pre>{error.message}</pre>
+  // if (currencyLoading) return "Loading...";
+  // if (currencyError) return <pre>{currencyError.message}</pre>
+
+  // if(productsData){
+  //   localStorage.setItem('productsDa', currencyData)
+  // }
+  
 
 
-
-  const value = { productsData, currencyData, currency, currencyObj, setCurrency, CartIsOpen, setCartIsOpen, categoryName, setCategoryName, addToCart, cartItems, totalPrice, handleDecrement, handleIncrement, removeFromCart, handleTextAttributeChange, totalItems }
+  const value = {currency, currencyObj, setCurrency, CartIsOpen, setCartIsOpen, categoryName, setCategoryName, addToCart, cartItems, totalPrice, handleDecrement, handleIncrement, removeFromCart, handleTextAttributeChange, totalItems }
   return <ProductsContext.Provider value={value}>{children}</ProductsContext.Provider>;
 }
 

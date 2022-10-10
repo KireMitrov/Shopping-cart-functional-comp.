@@ -1,11 +1,12 @@
 import React, { useContext } from "react";
 import { ProductsContext } from "../../context/productsContext";
 import ProductCard from "../../components/Product card/ProductCard";
+import { productsData } from "../../fakeData/fakeData"
 
 
 function Category() {
 
-    const { productsData, CartIsOpen, categoryName, currency } = useContext(ProductsContext);
+    const { CartIsOpen, categoryName, currency } = useContext(ProductsContext);
     const category = productsData.categories.find((cat) => cat.name.toLowerCase() === categoryName.toLowerCase());
     let currencyObj = category.products.map((item) => item.prices.find((i) => i.currency.symbol === currency))
 
