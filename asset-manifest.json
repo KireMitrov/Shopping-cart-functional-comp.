@@ -1,21 +1,21 @@
 {
   "files": {
-    "main.css": "/Scandiweb-Kire-Mitrov/static/css/main.86007f75.css",
-    "main.js": "/Scandiweb-Kire-Mitrov/static/js/main.3555186d.js",
-    "static/js/787.fedc83dc.chunk.js": "/Scandiweb-Kire-Mitrov/static/js/787.fedc83dc.chunk.js",
-    "static/media/raleway-all-400-normal.woff": "/Scandiweb-Kire-Mitrov/static/media/raleway-all-400-normal.98e7ff86f2b9a46e19cc.woff",
-    "static/media/raleway-latin-400-normal.woff2": "/Scandiweb-Kire-Mitrov/static/media/raleway-latin-400-normal.0bdecdd83e78d540c297.woff2",
-    "static/media/raleway-latin-ext-400-normal.woff2": "/Scandiweb-Kire-Mitrov/static/media/raleway-latin-ext-400-normal.e2c3693083a044bed680.woff2",
-    "static/media/raleway-cyrillic-ext-400-normal.woff2": "/Scandiweb-Kire-Mitrov/static/media/raleway-cyrillic-ext-400-normal.afca160d632851197a24.woff2",
-    "static/media/raleway-cyrillic-400-normal.woff2": "/Scandiweb-Kire-Mitrov/static/media/raleway-cyrillic-400-normal.f7d0cc4bf9cf8da4f023.woff2",
-    "static/media/raleway-vietnamese-400-normal.woff2": "/Scandiweb-Kire-Mitrov/static/media/raleway-vietnamese-400-normal.bb6f51e1b67ec8802d57.woff2",
-    "index.html": "/Scandiweb-Kire-Mitrov/index.html",
-    "main.86007f75.css.map": "/Scandiweb-Kire-Mitrov/static/css/main.86007f75.css.map",
-    "main.3555186d.js.map": "/Scandiweb-Kire-Mitrov/static/js/main.3555186d.js.map",
-    "787.fedc83dc.chunk.js.map": "/Scandiweb-Kire-Mitrov/static/js/787.fedc83dc.chunk.js.map"
+    "main.css": "/Scandiweb-Kire-Mitrov-classes/static/css/main.f197e31a.css",
+    "main.js": "/Scandiweb-Kire-Mitrov-classes/static/js/main.8408e0e9.js",
+    "static/js/787.fedc83dc.chunk.js": "/Scandiweb-Kire-Mitrov-classes/static/js/787.fedc83dc.chunk.js",
+    "static/media/raleway-all-400-normal.woff": "/Scandiweb-Kire-Mitrov-classes/static/media/raleway-all-400-normal.98e7ff86f2b9a46e19cc.woff",
+    "static/media/raleway-latin-400-normal.woff2": "/Scandiweb-Kire-Mitrov-classes/static/media/raleway-latin-400-normal.0bdecdd83e78d540c297.woff2",
+    "static/media/raleway-latin-ext-400-normal.woff2": "/Scandiweb-Kire-Mitrov-classes/static/media/raleway-latin-ext-400-normal.e2c3693083a044bed680.woff2",
+    "static/media/raleway-cyrillic-ext-400-normal.woff2": "/Scandiweb-Kire-Mitrov-classes/static/media/raleway-cyrillic-ext-400-normal.afca160d632851197a24.woff2",
+    "static/media/raleway-cyrillic-400-normal.woff2": "/Scandiweb-Kire-Mitrov-classes/static/media/raleway-cyrillic-400-normal.f7d0cc4bf9cf8da4f023.woff2",
+    "static/media/raleway-vietnamese-400-normal.woff2": "/Scandiweb-Kire-Mitrov-classes/static/media/raleway-vietnamese-400-normal.bb6f51e1b67ec8802d57.woff2",
+    "index.html": "/Scandiweb-Kire-Mitrov-classes/index.html",
+    "main.f197e31a.css.map": "/Scandiweb-Kire-Mitrov-classes/static/css/main.f197e31a.css.map",
+    "main.8408e0e9.js.map": "/Scandiweb-Kire-Mitrov-classes/static/js/main.8408e0e9.js.map",
+    "787.fedc83dc.chunk.js.map": "/Scandiweb-Kire-Mitrov-classes/static/js/787.fedc83dc.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.86007f75.css",
-    "static/js/main.3555186d.js"
+    "static/css/main.f197e31a.css",
+    "static/js/main.8408e0e9.js"
   ]
 }
