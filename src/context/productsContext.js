@@ -1,5 +1,4 @@
 import React, { createContext, useState } from "react";
-// import { useQuery, gql } from "@apollo/client";
 import { productsData, currencyData } from "../fakeData/fakeData"
 
 

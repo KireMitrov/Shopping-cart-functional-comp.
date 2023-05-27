@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react";
 import { Link } from 'react-router-dom';
 import { ProductsContext } from "../../context/productsContext";
+import circledIcon from "../assets/images/Circle Icon.svg"
 
 
 function ProductCard({ name, img, price, inStock }) {
@@ -22,7 +23,7 @@ function ProductCard({ name, img, price, inStock }) {
                     {currency} {price.toFixed(2)}
                 </div>
             </Link>
-            {isHovered && inStock ? <img src={'Circle Icon.svg'} className="cart-icon-small" onClick={() => addToCart(name, quantity)}></img> : null}
+            {isHovered && inStock ? <img src={circledIcon} className="cart-icon-small" onClick={() => addToCart(name, quantity)}></img> : null}
         </div>
     )
 }

@@ -3,12 +3,16 @@ import { Link } from "react-router-dom";
 import { ProductsContext } from "../../context/productsContext";
 import CartOverlay from "../Cart Overlay/CartOverlay";
 import { useClickOutside } from "../../hooks/useClickOutside";
-import { productsData, currencyData } from "../../fakeData/fakeData"
+import { productsData, currencyData } from "../../fakeData/fakeData";
+import logo from "../assets/images/a-logo.svg"
+import emptycart from "../assets/images/Empty Cart.svg"
+import vector from "../assets/images/Vector.svg"
+import vectorUp from "../assets/images/VectorUp.svg"
 
 
 
 function Navbar() {
-    // console.log(currencies)
+    
     const { currency, setCurrency, CartIsOpen, setCartIsOpen, categoryName, setCategoryName, cartItems, totalItems } = useContext(ProductsContext);
     const [currencyIsOpen, setCurrencyIsOpen] = useState(false);
     const cartRef = useRef();
@@ -28,7 +32,8 @@ function Navbar() {
                 }}>
                 </div>
             )}
-            <img className="logo" src="a-logo.svg" alt="logo"></img>
+
+            <img className="logo" src={logo} alt='logo'></img>
             <div className="navigation">
                 {productsData.categories.map((category) => (
                     <Link to={category.name} key={category.name} onClick={() => setCategoryName(category.name)}>
@@ -39,21 +44,21 @@ function Navbar() {
                 ))}
             </div>
             <div className="actions">
-                <div className="currency" onClick={()=> setCurrencyIsOpen(true)}>
+                <div className="currency" onClick={() => setCurrencyIsOpen(true)}>
                     <div className="currency-sign" >
                         {currency}
                     </div>
-                    <img src={currencyIsOpen ? 'VectorUp.svg':"Vector.svg"} alt="arrowUpDown" />
+                    <img src={currencyIsOpen ? `${vectorUp}` : `${vector}`} alt="arrowUpDown" />
                 </div>
                 <div className="cart-items-notification" style={{ display: cartItems.length === 0 ? "none" : "block" }}>{totalItems}</div>
-                <img className="cart-icon" src="Empty Cart.svg" alt="empty-cart" onClick={() => setCartIsOpen(!CartIsOpen)} />
+                <img className="cart-icon" src={emptycart} alt="empty-cart" onClick={() => setCartIsOpen(!CartIsOpen)} />
             </div>
             <div style={{ display: !CartIsOpen ? "none" : "block" }} ref={cartRef}>
                 <CartOverlay></CartOverlay>
             </div>
             <div className="currencySelector" style={{ display: !currencyIsOpen ? "none" : "block" }} ref={currencyRef}>
                 {currencyData.currencies.map((symbol) => (
-                    <div onClick={(e) => {setCurrency(symbol.symbol); setCurrencyIsOpen(false) }} className="currencyDiv" key={symbol.symbol}>
+                    <div onClick={(e) => { setCurrency(symbol.symbol); setCurrencyIsOpen(false) }} className="currencyDiv" key={symbol.symbol}>
                         <div>{symbol.symbol}</div>
                         <div>{symbol.label}</div>
                     </div>

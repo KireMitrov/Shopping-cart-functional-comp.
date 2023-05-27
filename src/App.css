@@ -8,6 +8,10 @@ a {
     text-decoration: none;
 }
 
+img {
+    object-fit: contain;
+}
+
 /* Navbar */
 
 .header {
@@ -373,6 +377,7 @@ a {
 .product-images img {
     width: 79px;
     height: 80px;
+    object-fit: cover;
 }
 
 /* Cart */
