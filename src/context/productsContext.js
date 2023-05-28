@@ -65,8 +65,8 @@ const ProductsProvider = ({ children }) => {
     let attributesArray = itemToAdd.attributes.map((item) => ({ name: item.name, defaultValue: item.items[0].value }))
 
     if (addedItem && productWithAtt) {
-      let existingItem = cartItems.some((item) => JSON.stringify(item.addedAttributes) === JSON.stringify(productWithAtt.addedAttributes) );
-  
+      let existingItem = cartItems.some((item) => JSON.stringify(item.addedAttributes) === JSON.stringify(productWithAtt.addedAttributes));
+      console.log("hi from card")
       if (existingItem) {
         setCartItems([...cartItems])
         return;
@@ -74,17 +74,18 @@ const ProductsProvider = ({ children }) => {
         setCartItems([...cartItems, { ...productWithAtt, quantity: 1 }]);
         setTotalItems(totalItems + 1);
         return;
-      } 
+      }
     }
 
-    if (productWithAtt){
+    if (productWithAtt) {
+      console.log("hi from productpage")
       const existingProductWithAtt = cartItems.find((item) => item.name === productWithAtt.name && JSON.stringify(item.addedAttributes) === JSON.stringify(productWithAtt.addedAttributes));
-      if (existingProductWithAtt){
+      if (existingProductWithAtt) {
         setCartItems([...cartItems]);
         return;
       } else {
 
-        setCartItems([...cartItems, {...productWithAtt, quantity: 1}])
+        setCartItems([...cartItems, { ...productWithAtt, quantity: 1 }])
         setTotalItems(totalItems + 1);
         return;
       }
@@ -108,7 +109,7 @@ const ProductsProvider = ({ children }) => {
 
   // Handling increment-decrement of quantity
 
-  function handleIncrement({name, quantity, addedAttributes}) {
+  function handleIncrement({ name, quantity, addedAttributes }) {
     let changedQuantityItem = cartItems.find((item) => item.name === name && item.quantity === quantity && JSON.stringify(item.addedAttributes) === JSON.stringify(addedAttributes));
 
     if (changedQuantityItem) {
@@ -118,7 +119,7 @@ const ProductsProvider = ({ children }) => {
     }
   }
 
-  function handleDecrement({name, quantity, addedAttributes}) {
+  function handleDecrement({ name, quantity, addedAttributes }) {
     let changedQuantityItem = cartItems.find((item) => item.name === name && item.quantity === quantity && JSON.stringify(item.addedAttributes) === JSON.stringify(addedAttributes));
 
     if (changedQuantityItem && changedQuantityItem.quantity > 1) {
@@ -160,10 +161,10 @@ const ProductsProvider = ({ children }) => {
   // if(productsData){
   //   localStorage.setItem('productsDa', currencyData)
   // }
-  
 
 
-  const value = {currency, currencyObj, setCurrency, CartIsOpen, setCartIsOpen, categoryName, setCategoryName, addToCart, cartItems, totalPrice, handleDecrement, handleIncrement, removeFromCart, handleTextAttributeChange, totalItems }
+
+  const value = { currency, currencyObj, setCurrency, CartIsOpen, setCartIsOpen, categoryName, setCategoryName, addToCart, cartItems, totalPrice, handleDecrement, handleIncrement, removeFromCart, handleTextAttributeChange, totalItems }
   return <ProductsContext.Provider value={value}>{children}</ProductsContext.Provider>;
 }
 
