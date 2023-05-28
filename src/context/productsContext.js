@@ -59,46 +59,57 @@ const ProductsProvider = ({ children }) => {
 
   // Adding- removing product from cart
 
-  function addToCart(name, productWithAtt) {
-    let itemToAdd = productsData.categories[0].products.find((item) => item.name.toLowerCase() === name.toLowerCase());
-    let addedItem = cartItems.find((item) => item.name === itemToAdd.name);
-    let attributesArray = itemToAdd.attributes.map((item) => ({ name: item.name, defaultValue: item.items[0].value }))
-
-    if (addedItem && productWithAtt) {
-      let existingItem = cartItems.some((item) => JSON.stringify(item.addedAttributes) === JSON.stringify(productWithAtt.addedAttributes));
-      console.log("hi from card")
-      if (existingItem) {
-        setCartItems([...cartItems])
-        return;
-      } else {
-        setCartItems([...cartItems, { ...productWithAtt, quantity: 1 }]);
-        setTotalItems(totalItems + 1);
-        return;
-      }
-    }
-
-    if (productWithAtt) {
-      console.log("hi from productpage")
-      const existingProductWithAtt = cartItems.find((item) => item.name === productWithAtt.name && JSON.stringify(item.addedAttributes) === JSON.stringify(productWithAtt.addedAttributes));
-      if (existingProductWithAtt) {
-        setCartItems([...cartItems]);
-        return;
-      } else {
-
-        setCartItems([...cartItems, { ...productWithAtt, quantity: 1 }])
-        setTotalItems(totalItems + 1);
-        return;
-      }
-    }
-
+  function addToCart(product) {
+    const addedItem = cartItems.find((item) => item.name === product.name && item.quantity === product.quantity && JSON.stringify(item.addedAttributes) === JSON.stringify(product.addedAttributes));
+    const productToAdd = JSON.parse(JSON.stringify({...product}))
+    
     if (addedItem) {
-      setCartItems([...cartItems])
-      return;
-
-    } else {
-      setCartItems([...cartItems, { ...itemToAdd, quantity: 1, addedAttributes: attributesArray }]);
-      setTotalItems(totalItems + 1)
+        setCartItems([ ...cartItems ]);
+        return
     }
+
+    setCartItems( [...cartItems, productToAdd] )
+    setTotalItems(  totalItems + 1 )
+
+    // let itemToAdd = productsData.categories[0].products.find((item) => item.name.toLowerCase() === name.toLowerCase());
+    // let addedItem = cartItems.find((item) => item.name === itemToAdd.name);
+    // let attributesArray = itemToAdd.attributes.map((item) => ({ name: item.name, defaultValue: item.items[0].value }))
+
+    // if (addedItem && productWithAtt) {
+    //   let existingItem = cartItems.some((item) => JSON.stringify(item.addedAttributes) === JSON.stringify(productWithAtt.addedAttributes));
+    //   console.log("hi from card")
+    //   if (existingItem) {
+    //     setCartItems([...cartItems])
+    //     return;
+    //   } else {
+    //     setCartItems([...cartItems, { ...productWithAtt, quantity: 1 }]);
+    //     setTotalItems(totalItems + 1);
+    //     return;
+    //   }
+    // }
+
+    // if (productWithAtt) {
+    //   console.log("hi from productpage")
+    //   const existingProductWithAtt = cartItems.find((item) => item.name === productWithAtt.name && JSON.stringify(item.addedAttributes) === JSON.stringify(productWithAtt.addedAttributes));
+    //   if (existingProductWithAtt) {
+    //     setCartItems([...cartItems]);
+    //     return;
+    //   } else {
+
+    //     setCartItems([...cartItems, { ...productWithAtt, quantity: 1 }])
+    //     setTotalItems(totalItems + 1);
+    //     return;
+    //   }
+    // }
+
+    // if (addedItem) {
+    //   setCartItems([...cartItems])
+    //   return;
+
+    // } else {
+    //   setCartItems([...cartItems, { ...itemToAdd, quantity: 1, addedAttributes: attributesArray }]);
+    //   setTotalItems(totalItems + 1)
+    // }
   }
 
   function removeFromCart({ name, quantity, addedAttributes }) {

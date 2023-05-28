@@ -64,7 +64,7 @@ function ProductPage() {
                     <div className="attributes-text">PRICE:</div>
                     <div className="product-description-price">{currency} {currencyObj.amount.toFixed(2)}</div>
                 </div>
-                <button onClick={() => addToCart(currentProduct.name, productWithAtt)}>ADD TO CART</button>
+                <button onClick={() => addToCart({...productWithAtt, quantity:1})} disabled={!currentProduct.inStock}>ADD TO CART</button>
                 <div className="product-description-text" dangerouslySetInnerHTML={{ __html: currentProduct.description }} />
             </div>
             <div className="product-images">

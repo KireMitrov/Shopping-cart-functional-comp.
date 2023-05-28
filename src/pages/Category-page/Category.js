@@ -18,7 +18,7 @@ function Category() {
             <div className="products">
                 {category.products.map((product, index) => (
                     <div className="product-card" key={product.name}>
-                        <ProductCard name={product.name} img={product.gallery[0]} price={currencyObj[index].amount} inStock={product.inStock}></ProductCard>
+                        <ProductCard name={product.name} img={product.gallery[0]} price={currencyObj[index].amount} inStock={product.inStock} product={product}></ProductCard>
                     </div>
                 ))}
             </div>

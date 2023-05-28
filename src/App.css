@@ -357,6 +357,10 @@ img {
     cursor: pointer;
 }
 
+.product-description button:disabled{
+    opacity: 0.5;
+    cursor: not-allowed;
+}
 .product-description-text {
     margin-top: 32px;
 }
