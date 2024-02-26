@@ -71,45 +71,6 @@ const ProductsProvider = ({ children }) => {
     setCartItems( [...cartItems, productToAdd] )
     setTotalItems(  totalItems + 1 )
 
-    // let itemToAdd = productsData.categories[0].products.find((item) => item.name.toLowerCase() === name.toLowerCase());
-    // let addedItem = cartItems.find((item) => item.name === itemToAdd.name);
-    // let attributesArray = itemToAdd.attributes.map((item) => ({ name: item.name, defaultValue: item.items[0].value }))
-
-    // if (addedItem && productWithAtt) {
-    //   let existingItem = cartItems.some((item) => JSON.stringify(item.addedAttributes) === JSON.stringify(productWithAtt.addedAttributes));
-    //   console.log("hi from card")
-    //   if (existingItem) {
-    //     setCartItems([...cartItems])
-    //     return;
-    //   } else {
-    //     setCartItems([...cartItems, { ...productWithAtt, quantity: 1 }]);
-    //     setTotalItems(totalItems + 1);
-    //     return;
-    //   }
-    // }
-
-    // if (productWithAtt) {
-    //   console.log("hi from productpage")
-    //   const existingProductWithAtt = cartItems.find((item) => item.name === productWithAtt.name && JSON.stringify(item.addedAttributes) === JSON.stringify(productWithAtt.addedAttributes));
-    //   if (existingProductWithAtt) {
-    //     setCartItems([...cartItems]);
-    //     return;
-    //   } else {
-
-    //     setCartItems([...cartItems, { ...productWithAtt, quantity: 1 }])
-    //     setTotalItems(totalItems + 1);
-    //     return;
-    //   }
-    // }
-
-    // if (addedItem) {
-    //   setCartItems([...cartItems])
-    //   return;
-
-    // } else {
-    //   setCartItems([...cartItems, { ...itemToAdd, quantity: 1, addedAttributes: attributesArray }]);
-    //   setTotalItems(totalItems + 1)
-    // }
   }
 
   function removeFromCart({ name, quantity, addedAttributes }) {

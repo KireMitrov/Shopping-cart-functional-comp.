@@ -25,8 +25,8 @@ function Navbar() {
             {CartIsOpen && (
                 <div style={{
                     position: "fixed",
-                    width: "100vw",
-                    height: "100vh",
+                    minWidth: "100vw",
+                    minHeight: "200vh",
                     backgroundColor: `rgba(0,0,0,0.4)`,
                     zIndex: 10,
                 }}>
@@ -50,8 +50,10 @@ function Navbar() {
                     </div>
                     <img src={currencyIsOpen ? `${vectorUp}` : `${vector}`} alt="arrowUpDown" />
                 </div>
-                <div className="cart-items-notification" style={{ display: cartItems.length === 0 ? "none" : "block" }}>{totalItems}</div>
-                <img className="cart-icon" src={emptycart} alt="empty-cart" onClick={() => setCartIsOpen(!CartIsOpen)} />
+                <div className="actions-cart">
+                    <div className="cart-items-notification" style={{ display: cartItems.length === 0 ? "none" : "block" }}>{totalItems}</div>
+                    <img className="cart-icon" src={emptycart} alt="empty-cart" onClick={() => setCartIsOpen(!CartIsOpen)} />
+                </div>
             </div>
             <div style={{ display: !CartIsOpen ? "none" : "block" }} ref={cartRef}>
                 <CartOverlay></CartOverlay>
